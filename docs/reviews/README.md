@@ -10,6 +10,8 @@ You implement the portfolio; Codex reviews when you request it in the chat. Shar
 - For UI changes, include desktop/mobile screenshots and keyboard checks.
 - For API changes, demonstrate success and relevant failure cases with synthetic data.
 - Answer the assessment, and identify anything you are unsure about.
+- Keep the PR focused on one ready 1–4 point task/sub-issue. Re-estimate and split scope that grows above 4 before continuing.
+- For row reordering, demonstrate the entire row moving, siblings rearranging during drag, drop/cancel, touch and keyboard behavior—not only the final order.
 
 ## What the review checks
 

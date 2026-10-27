@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-27",
+  "originalTasksReviewed": 40,
+  "totalIssues": 109,
+  "topLevelIssues": 42,
+  "splitParents": 29,
+  "subIssues": 67,
+  "actionableItems": 80,
+  "maxActionableEstimate": 4,
+  "leafPoints": 244,
+  "checks": [
+    "All 40 original issues audited",
+    "Original acceptance criteria retained",
+    "Every actionable estimate <=4",
+    "Parent estimates equal child sums",
+    "All dependency IDs valid",
+    "Expanded dependency graph acyclic",
+    "Board order follows expanded prerequisites"
+  ],
+  "limitation": "User-described reorder interaction is confirmed. Complete Figma visual inventory is still unverified and remains F02 work; exact unobserved screens are not invented.",
+  "remoteVerification": {
+    "project": "https://github.com/users/paulsonrison/projects/3",
+    "managedIssues": 109,
+    "actualSubIssueLinks": 67,
+    "estimatesMatch": true,
+    "orderFieldsMatch": true,
+    "manualBoardOrderMatches": true,
+    "originalStatesAndStatusesPreserved": true,
+    "originalAcceptanceRetained": true
+  }
+}

@@ -11,7 +11,13 @@
       "A fresh npm ci succeeds.",
       "Both apps run and you record their addresses and one Network-panel observation."
     ],
-    "dependsOn": []
+    "dependsOn": [],
+    "estimate": 2,
+    "estimateRationale": "One environment and HTTP-orientation exercise.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [],
+    "order": 1
   },
   {
     "id": "F02",
@@ -23,11 +29,21 @@
     "assessment": "Which parts are presentation, interaction, or data-backed features?",
     "acceptance": [
       "Record actual sections, assets, routes, desktop/mobile behavior and states.",
-      "Flag uncertain features instead of assuming the scaffold includes them."
+      "Flag uncertain features instead of assuming the scaffold includes them.",
+      "Record the user's confirmed handle-driven whole-row reorder behavior, live sibling movement, drop, keyboard and touch requirements.",
+      "List unresolved screens/assets separately; do not mark visual coverage complete until the actual Figma inventory is reviewed."
     ],
     "dependsOn": [
       "F01"
-    ]
+    ],
+    "estimate": 3,
+    "estimateRationale": "A bounded reference inventory; unverified screens remain explicit unknowns.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "F01"
+    ],
+    "order": 2
   },
   {
     "id": "F03",
@@ -43,7 +59,70 @@
     ],
     "dependsOn": [
       "F02"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Content scope and request/error contracts are separately reviewable decisions.",
+    "kind": "parent",
+    "childIds": [
+      "F03.a",
+      "F03.b"
+    ],
+    "executionDependsOn": [
+      "F02"
+    ],
+    "order": 3
+  },
+  {
+    "id": "F03.a",
+    "parentId": "F03",
+    "kind": "subtask",
+    "phase": "Foundations",
+    "area": "planning",
+    "title": "Define content ownership and conditional feature scope",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Define content ownership and conditional feature scope. Then attempt the smallest observable slice.",
+    "lesson": "A contract defines request, response and error shapes before either side depends on them. This slice focuses on define content ownership and conditional feature scope.",
+    "assessment": "Which content can stay static, and what justifies a database or admin login? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "List public content, editable content, contact storage/delivery needs and explicit non-goals.",
+      "Decide whether admin editing is required; record which existing row collection is reorderable and whether order is temporary, local or persisted. Do not assume a reorder API."
+    ],
+    "dependsOn": [
+      "F02"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "F02"
+    ],
+    "order": 4
+  },
+  {
+    "id": "F03.b",
+    "parentId": "F03",
+    "kind": "subtask",
+    "phase": "Foundations",
+    "area": "planning",
+    "title": "Specify project, contact and conditional admin API contracts",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Specify project, contact and conditional admin API contracts. Then attempt the smallest observable slice.",
+    "lesson": "A contract defines request, response and error shapes before either side depends on them. This slice focuses on specify project, contact and conditional admin api contracts.",
+    "assessment": "Which content can stay static, and what justifies a database or admin login? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Document endpoint methods, success/error shapes, safe public fields, validation bounds, identifiers and bounded queries.",
+      "Map each confirmed interactive feature to its data source; specify reorder persistence only if F03.a requires it, with authorization and failure behavior."
+    ],
+    "dependsOn": [
+      "F02",
+      "F03.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "F02",
+      "F03.a"
+    ],
+    "order": 5
   },
   {
     "id": "F04",
@@ -59,7 +138,98 @@
     ],
     "dependsOn": [
       "F01"
-    ]
+    ],
+    "estimate": 2,
+    "estimateRationale": "A small documentation PR establishes the review workflow.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "F01"
+    ],
+    "order": 6
+  },
+  {
+    "id": "F05",
+    "phase": "Foundations",
+    "area": "quality",
+    "title": "Prepare frontend and isolated backend test harnesses",
+    "firstStep": "Choose one observable UI behavior and one isolated API fixture before implementing feature code.",
+    "lesson": "A reusable test harness makes small changes independently verifiable without production data.",
+    "assessment": "How will your tests avoid depending on live services or production credentials?",
+    "acceptance": [
+      "Provide documented frontend interaction and isolated API/database test commands.",
+      "Run deterministic smoke checks in CI and define touch, keyboard and reduced-motion testing."
+    ],
+    "dependsOn": [
+      "F01",
+      "F04"
+    ],
+    "estimate": 6,
+    "estimateRationale": "Frontend interaction tests and isolated API/database tests require different fixtures and runners.",
+    "kind": "parent",
+    "childIds": [
+      "F05.a",
+      "F05.b"
+    ],
+    "executionDependsOn": [
+      "F01",
+      "F04"
+    ],
+    "order": 7
+  },
+  {
+    "id": "F05.a",
+    "parentId": "F05",
+    "kind": "subtask",
+    "phase": "Foundations",
+    "area": "quality",
+    "title": "Set up the frontend interaction-test harness",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Set up the frontend interaction-test harness. Then attempt the smallest observable slice.",
+    "lesson": "A reusable test harness makes small changes independently verifiable without production data. This slice focuses on set up the frontend interaction-test harness.",
+    "assessment": "How will your tests avoid depending on live services or production credentials? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Choose a suitable interaction test runner and add one meaningful semantic UI smoke test.",
+      "Document pointer/touch/keyboard simulation and a reduced-motion test strategy; provide an npm command and run it in CI."
+    ],
+    "dependsOn": [
+      "F01",
+      "F04"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "F01",
+      "F04"
+    ],
+    "order": 8
+  },
+  {
+    "id": "F05.b",
+    "parentId": "F05",
+    "kind": "subtask",
+    "phase": "Foundations",
+    "area": "quality",
+    "title": "Set up isolated API and database test fixtures",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Set up isolated API and database test fixtures. Then attempt the smallest observable slice.",
+    "lesson": "A reusable test harness makes small changes independently verifiable without production data. This slice focuses on set up isolated api and database test fixtures.",
+    "assessment": "How will your tests avoid depending on live services or production credentials? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Keep existing Supertest checks and add isolated synthetic test database setup/cleanup without production credentials.",
+      "Document deterministic seeding, teardown and test commands; verify tests cannot target a production database and run the appropriate suite in CI."
+    ],
+    "dependsOn": [
+      "F01",
+      "F04"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "F01",
+      "F04"
+    ],
+    "order": 9
   },
   {
     "id": "D01",
@@ -75,7 +245,15 @@
     ],
     "dependsOn": [
       "F02"
-    ]
+    ],
+    "estimate": 2,
+    "estimateRationale": "Font identification, licensing and one loading/fallback check form one small deliverable.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "F02"
+    ],
+    "order": 10
   },
   {
     "id": "D02",
@@ -91,7 +269,15 @@
     ],
     "dependsOn": [
       "D01"
-    ]
+    ],
+    "estimate": 3,
+    "estimateRationale": "A compact shared token foundation with contrast and one consumption example.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "D01"
+    ],
+    "order": 11
   },
   {
     "id": "D03",
@@ -107,7 +293,70 @@
     ],
     "dependsOn": [
       "D02"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Theme initialization and accessible persisted interaction have separate observable failure modes.",
+    "kind": "parent",
+    "childIds": [
+      "D03.a",
+      "D03.b"
+    ],
+    "executionDependsOn": [
+      "D02"
+    ],
+    "order": 12
+  },
+  {
+    "id": "D03.a",
+    "parentId": "D03",
+    "kind": "subtask",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Establish light/dark theme tokens and initial preference resolution",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Establish light/dark theme tokens and initial preference resolution. Then attempt the smallest observable slice.",
+    "lesson": "Theme state affects rendering, persistence and accessible contrast. This slice focuses on establish light/dark theme tokens and initial preference resolution.",
+    "assessment": "How can a saved browser preference cause a hydration mismatch? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Define initial theme precedence: saved valid choice, otherwise system preference; invalid saved values safely fall back.",
+      "Verify both theme palettes meet required text/focus contrast and initial rendering has no avoidable theme flash or hydration warnings."
+    ],
+    "dependsOn": [
+      "D02"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "D02"
+    ],
+    "order": 13
+  },
+  {
+    "id": "D03.b",
+    "parentId": "D03",
+    "kind": "subtask",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Add accessible theme switching and persistence",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Add accessible theme switching and persistence. Then attempt the smallest observable slice.",
+    "lesson": "Theme state affects rendering, persistence and accessible contrast. This slice focuses on add accessible theme switching and persistence.",
+    "assessment": "How can a saved browser preference cause a hydration mismatch? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Provide a keyboard-operable switch with an accessible name and state.",
+      "Verify manual choice persists on reload, system fallback works with no saved choice, and storage failure does not break the page."
+    ],
+    "dependsOn": [
+      "D02",
+      "D03.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "D02",
+      "D03.a"
+    ],
+    "order": 14
   },
   {
     "id": "D04",
@@ -123,7 +372,15 @@
     ],
     "dependsOn": [
       "D02"
-    ]
+    ],
+    "estimate": 3,
+    "estimateRationale": "Base semantics and responsive container rules are a single reviewable foundation.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "D02"
+    ],
+    "order": 15
   },
   {
     "id": "D05",
@@ -139,8 +396,85 @@
     ],
     "dependsOn": [
       "D03",
-      "D04"
-    ]
+      "D04",
+      "F05.a"
+    ],
+    "estimate": 5,
+    "estimateRationale": "Shared package consumption and interactive button states warrant separate concrete deliverables.",
+    "kind": "parent",
+    "childIds": [
+      "D05.a",
+      "D05.b"
+    ],
+    "executionDependsOn": [
+      "D03.a",
+      "D03.b",
+      "D04",
+      "F05.a"
+    ],
+    "order": 16
+  },
+  {
+    "id": "D05.a",
+    "parentId": "D05",
+    "kind": "subtask",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Export and consume a native shared Button",
+    "estimate": 2,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Export and consume a native shared Button. Then attempt the smallest observable slice.",
+    "lesson": "A reusable button should preserve native semantics and expose only necessary options. This slice focuses on export and consume a native shared button.",
+    "assessment": "When should navigation use a link instead of a button? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Configure the first real packages/ui exports and React peer dependencies.",
+      "Render an imported native Button from the frontend and verify the package builds without duplicate React or broken imports."
+    ],
+    "dependsOn": [
+      "D03",
+      "D04",
+      "F05.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "D03.a",
+      "D03.b",
+      "D04",
+      "F05.a"
+    ],
+    "order": 17
+  },
+  {
+    "id": "D05.b",
+    "parentId": "D05",
+    "kind": "subtask",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Complete Button variants and accessible states",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Complete Button variants and accessible states. Then attempt the smallest observable slice.",
+    "lesson": "A reusable button should preserve native semantics and expose only necessary options. This slice focuses on complete button variants and accessible states.",
+    "assessment": "When should navigation use a link instead of a button? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Implement primary, secondary, disabled and visible focus states with minimal props and native semantics.",
+      "Verify keyboard activation, disabled behavior and form button type; demonstrate navigation uses a link."
+    ],
+    "dependsOn": [
+      "D03",
+      "D04",
+      "F05.a",
+      "D05.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "D03.a",
+      "D03.b",
+      "D04",
+      "F05.a",
+      "D05.a"
+    ],
+    "order": 18
   },
   {
     "id": "D06",
@@ -155,8 +489,18 @@
       "Verify keyboard use and programmatically associated error text."
     ],
     "dependsOn": [
-      "D04"
-    ]
+      "D04",
+      "F05.a"
+    ],
+    "estimate": 3,
+    "estimateRationale": "Labeled inputs and associated feedback form one focused primitive.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "D04",
+      "F05.a"
+    ],
+    "order": 19
   },
   {
     "id": "D07",
@@ -168,12 +512,23 @@
     "assessment": "What should assistive technology announce when progress is unknown?",
     "acceptance": [
       "Create ProgressBar only for a meaningful use found in the reference.",
-      "Verify bounds/accessible values or document why a decorative indicator replaces it."
+      "Verify bounds/accessible values or document why a decorative indicator replaces it.",
+      "Record N/A or decorative treatment when the inventory has no measurable progress; do not introduce a fictitious skill percentage."
     ],
     "dependsOn": [
       "D05",
       "F02"
-    ]
+    ],
+    "estimate": 2,
+    "estimateRationale": "Conditional reference-backed indicator with meaningful semantics; no invented progress feature.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "D05.a",
+      "D05.b",
+      "F02"
+    ],
+    "order": 20
   },
   {
     "id": "U01",
@@ -189,7 +544,73 @@
     ],
     "dependsOn": [
       "D05"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Semantic shell and responsive navigation behavior can be independently reviewed.",
+    "kind": "parent",
+    "childIds": [
+      "U01.a",
+      "U01.b"
+    ],
+    "executionDependsOn": [
+      "D05.a",
+      "D05.b"
+    ],
+    "order": 21
+  },
+  {
+    "id": "U01.a",
+    "parentId": "U01",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Build semantic page regions and skip navigation",
+    "estimate": 2,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Build semantic page regions and skip navigation. Then attempt the smallest observable slice.",
+    "lesson": "Landmarks and skip links make the page easier to navigate. This slice focuses on build semantic page regions and skip navigation.",
+    "assessment": "Which landmark should contain the primary page content? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Create header, navigation, main and footer appropriate to confirmed inventory.",
+      "Verify skip link becomes visible on focus and moves focus to unobstructed main content with correct landmark structure."
+    ],
+    "dependsOn": [
+      "D05"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "D05.a",
+      "D05.b"
+    ],
+    "order": 22
+  },
+  {
+    "id": "U01.b",
+    "parentId": "U01",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Complete responsive and keyboard-accessible navigation",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Complete responsive and keyboard-accessible navigation. Then attempt the smallest observable slice.",
+    "lesson": "Landmarks and skip links make the page easier to navigate. This slice focuses on complete responsive and keyboard-accessible navigation.",
+    "assessment": "Which landmark should contain the primary page content? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Implement only confirmed desktop/mobile navigation destinations and menu behavior.",
+      "Verify keyboard open/close, visible focus, appropriate focus restoration, narrow/wide resizing and no menu/content obstruction."
+    ],
+    "dependsOn": [
+      "D05",
+      "U01.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "D05.a",
+      "D05.b",
+      "U01.a"
+    ],
+    "order": 23
   },
   {
     "id": "U02",
@@ -206,7 +627,18 @@
     "dependsOn": [
       "U01",
       "F03"
-    ]
+    ],
+    "estimate": 3,
+    "estimateRationale": "Confirmed introduction/about sections with approved copy and responsive semantics are bounded.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "U01.a",
+      "U01.b",
+      "F03.a",
+      "F03.b"
+    ],
+    "order": 24
   },
   {
     "id": "U03",
@@ -218,12 +650,22 @@
     "assessment": "Why can array-index keys be unstable when a list changes?",
     "acceptance": [
       "Build the confirmed skills/journey content without invented claims.",
-      "Verify ordered reading, narrow layouts and meaningful indicators."
+      "Verify ordered reading, narrow layouts and meaningful indicators.",
+      "If skills or journey content is absent from the inventory, record N/A for that section; do not infer it from the task title."
     ],
     "dependsOn": [
       "U02",
       "D07"
-    ]
+    ],
+    "estimate": 3,
+    "estimateRationale": "Confirmed repeated content with stable data and ordered reading is bounded.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "U02",
+      "D07"
+    ],
+    "order": 25
   },
   {
     "id": "U04",
@@ -240,7 +682,81 @@
     "dependsOn": [
       "U01",
       "F03"
-    ]
+    ],
+    "estimate": 7,
+    "estimateRationale": "Project collection and routed project detail have distinct behavior and verification.",
+    "kind": "parent",
+    "childIds": [
+      "U04.a",
+      "U04.b"
+    ],
+    "executionDependsOn": [
+      "U01.a",
+      "U01.b",
+      "F03.a",
+      "F03.b"
+    ],
+    "order": 26
+  },
+  {
+    "id": "U04.a",
+    "parentId": "U04",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Render responsive project cards from the agreed data contract",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Render responsive project cards from the agreed data contract. Then attempt the smallest observable slice.",
+    "lesson": "Routes identify content; components share presentation. This slice focuses on render responsive project cards from the agreed data contract.",
+    "assessment": "What should happen when a project slug is unknown? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Use sample projects conforming to F03 with stable identifiers and accessible card links.",
+      "Verify responsive images, meaningful alternatives, narrow layouts and valid card destinations."
+    ],
+    "dependsOn": [
+      "U01",
+      "F03"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "U01.a",
+      "U01.b",
+      "F03.a",
+      "F03.b"
+    ],
+    "order": 27
+  },
+  {
+    "id": "U04.b",
+    "parentId": "U04",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Build project detail routes and useful not-found behavior",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Build project detail routes and useful not-found behavior. Then attempt the smallest observable slice.",
+    "lesson": "Routes identify content; components share presentation. This slice focuses on build project detail routes and useful not-found behavior.",
+    "assessment": "What should happen when a project slug is unknown? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Render confirmed project detail content with stable routes and responsive images/details.",
+      "Verify known slugs, unknown slugs, direct navigation, keyboard links and useful return navigation without invented screens."
+    ],
+    "dependsOn": [
+      "U01",
+      "F03",
+      "U04.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "U01.a",
+      "U01.b",
+      "F03.a",
+      "F03.b",
+      "U04.a"
+    ],
+    "order": 28
   },
   {
     "id": "U05",
@@ -258,7 +774,86 @@
       "D06",
       "U01",
       "F03"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Client validation and submission feedback can be checked separately before API wiring.",
+    "kind": "parent",
+    "childIds": [
+      "U05.a",
+      "U05.b"
+    ],
+    "executionDependsOn": [
+      "D06",
+      "U01.a",
+      "U01.b",
+      "F03.a",
+      "F03.b"
+    ],
+    "order": 29
+  },
+  {
+    "id": "U05.a",
+    "parentId": "U05",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Build contact fields and accessible client validation",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Build contact fields and accessible client validation. Then attempt the smallest observable slice.",
+    "lesson": "Client validation improves feedback but cannot protect the server. This slice focuses on build contact fields and accessible client validation.",
+    "assessment": "Which validations must also run on the backend? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Implement only F03-agreed fields with labels, required states, hint/error associations and validation.",
+      "Verify keyboard completion and actionable feedback for blank, malformed and over-limit agreed fields."
+    ],
+    "dependsOn": [
+      "D06",
+      "U01",
+      "F03"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "D06",
+      "U01.a",
+      "U01.b",
+      "F03.a",
+      "F03.b"
+    ],
+    "order": 30
+  },
+  {
+    "id": "U05.b",
+    "parentId": "U05",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Implement contact submission states with a simulated transport",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Implement contact submission states with a simulated transport. Then attempt the smallest observable slice.",
+    "lesson": "Client validation improves feedback but cannot protect the server. This slice focuses on implement contact submission states with a simulated transport.",
+    "assessment": "Which validations must also run on the backend? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Demonstrate pending, success and recoverable error states before API integration.",
+      "Verify repeated clicks cannot duplicate a pending submit, feedback is announced and input survives recoverable failures."
+    ],
+    "dependsOn": [
+      "D06",
+      "U01",
+      "F03",
+      "U05.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "D06",
+      "U01.a",
+      "U01.b",
+      "F03.a",
+      "F03.b",
+      "U05.a"
+    ],
+    "order": 31
   },
   {
     "id": "U06",
@@ -270,13 +865,266 @@
     "assessment": "How would you respect a user's reduced-motion setting?",
     "acceptance": [
       "Implement only purposeful transitions confirmed by the reference.",
-      "Verify reduced-motion preferences, focus and performance on mobile."
+      "Verify reduced-motion preferences, focus and performance on mobile.",
+      "U07 owns reorder interaction motion; U06 must not substitute a decorative handle animation for whole-row dragging."
     ],
     "dependsOn": [
       "U02",
       "U03",
       "U04"
-    ]
+    ],
+    "estimate": 5,
+    "estimateRationale": "Motion inventory and completed cross-section behavior are broader than one small animation.",
+    "kind": "parent",
+    "childIds": [
+      "U06.a",
+      "U06.b"
+    ],
+    "executionDependsOn": [
+      "U02",
+      "U03",
+      "U04.a",
+      "U04.b"
+    ],
+    "order": 32
+  },
+  {
+    "id": "U06.a",
+    "parentId": "U06",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Implement confirmed purposeful section transitions",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Implement confirmed purposeful section transitions. Then attempt the smallest observable slice.",
+    "lesson": "Motion should explain state without blocking access to content. This slice focuses on implement confirmed purposeful section transitions.",
+    "assessment": "How would you respect a user's reduced-motion setting? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Record which actual reference interactions justify motion, then implement only those confirmed transitions.",
+      "Verify transitions explain state without hiding content, stealing focus or obstructing mobile interaction."
+    ],
+    "dependsOn": [
+      "U02",
+      "U03",
+      "U04"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "U02",
+      "U03",
+      "U04.a",
+      "U04.b"
+    ],
+    "order": 33
+  },
+  {
+    "id": "U06.b",
+    "parentId": "U06",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Complete reduced-motion and mobile motion verification",
+    "estimate": 2,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Complete reduced-motion and mobile motion verification. Then attempt the smallest observable slice.",
+    "lesson": "Motion should explain state without blocking access to content. This slice focuses on complete reduced-motion and mobile motion verification.",
+    "assessment": "How would you respect a user's reduced-motion setting? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Honor reduced-motion preferences across implemented transitions without losing state or content.",
+      "Verify keyboard focus continuity and record a mobile performance observation; fix avoidable layout/animation jank."
+    ],
+    "dependsOn": [
+      "U02",
+      "U03",
+      "U04",
+      "U06.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "U02",
+      "U03",
+      "U04.a",
+      "U04.b",
+      "U06.a"
+    ],
+    "order": 34
+  },
+  {
+    "id": "U07",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Reorder entire field rows with live rearrangement and accessible controls",
+    "firstStep": "Identify the existing reorderable row collection and write pickup, move, drop and cancel examples.",
+    "lesson": "Drag handles activate movement; stable row identity, prospective order and committed order must remain distinct.",
+    "assessment": "Why must the entire row move while sibling positions update before release, and how will keyboard users cancel?",
+    "acceptance": [
+      "Grabbing the handle moves the entire row, including its content, rather than just the handle.",
+      "Other rows slide into their prospective positions during dragging, before release.",
+      "Releasing drops the row into the visible destination without duplicates, lost content or a jump.",
+      "Keyboard and touch support remain usable, with focus continuity, bounds, drop and cancel behavior.",
+      "Respect reduced-motion preferences while preserving destination feedback and stable row identity.",
+      "This is the sole newly confirmed interaction; source Figma remains inaccessible, so additional layouts/screens await F02 inventory.",
+      "Arrange quality/release gates to depend on U07 completion so required reorder behavior is not omitted from final audits."
+    ],
+    "dependsOn": [
+      "F02",
+      "F03",
+      "U01",
+      "F05.a"
+    ],
+    "estimate": 11,
+    "estimateRationale": "The explicit whole-row reorder interaction requires stable identity, live pointer layout and accessible alternative input.",
+    "kind": "parent",
+    "childIds": [
+      "U07.a",
+      "U07.b",
+      "U07.c"
+    ],
+    "executionDependsOn": [
+      "F02",
+      "F03.a",
+      "F03.b",
+      "U01.a",
+      "U01.b",
+      "F05.a"
+    ],
+    "order": 35
+  },
+  {
+    "id": "U07.a",
+    "parentId": "U07",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Define reorder state and stable identity contract",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Define reorder state and stable identity contract. Then attempt the smallest observable slice.",
+    "lesson": "Drag handles activate movement; stable row identity, prospective order and committed order must remain distinct. This slice focuses on define reorder state and stable identity contract.",
+    "assessment": "Why must the entire row move while sibling positions update before release, and how will keyboard users cancel? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Identify the existing confirmed row collection and document stable row IDs, order ownership and commit/cancel behavior; do not invent a new screen or backend persistence.",
+      "Demonstrate moving first/middle/last rows preserves row contents and identity; canceled operations restore the original order, and no-op moves preserve it.",
+      "Specify handle-only activation, entire-row movement, live sibling reflow and drop placement as acceptance examples for subsequent children."
+    ],
+    "dependsOn": [
+      "F02",
+      "F03",
+      "U01",
+      "F05.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "F02",
+      "F03.a",
+      "F03.b",
+      "U01.a",
+      "U01.b",
+      "F05.a"
+    ],
+    "order": 36
+  },
+  {
+    "id": "U07.b",
+    "parentId": "U07",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Implement handle-driven whole-row dragging with live reflow",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Implement handle-driven whole-row dragging with live reflow. Then attempt the smallest observable slice.",
+    "lesson": "Drag handles activate movement; stable row identity, prospective order and committed order must remain distinct. This slice focuses on implement handle-driven whole-row dragging with live reflow.",
+    "assessment": "Why must the entire row move while sibling positions update before release, and how will keyboard users cancel? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Dragging the handle moves the entire row, including its content; the handle alone does not detach or move independently.",
+      "Other rows slide/reflow into the prospective order while dragging, before release; release commits exactly the visible destination with no jump or duplicate/missing rows.",
+      "Verify upward/downward moves, first/last boundaries, cancellation and interactive row content that remains usable when not dragging."
+    ],
+    "dependsOn": [
+      "F02",
+      "F03",
+      "U01",
+      "F05.a",
+      "U07.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "F02",
+      "F03.a",
+      "F03.b",
+      "U01.a",
+      "U01.b",
+      "F05.a",
+      "U07.a"
+    ],
+    "order": 37
+  },
+  {
+    "id": "U07.c",
+    "parentId": "U07",
+    "kind": "subtask",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Complete touch, keyboard and reduced-motion reorder accessibility",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Complete touch, keyboard and reduced-motion reorder accessibility. Then attempt the smallest observable slice.",
+    "lesson": "Drag handles activate movement; stable row identity, prospective order and committed order must remain distinct. This slice focuses on complete touch, keyboard and reduced-motion reorder accessibility.",
+    "assessment": "Why must the entire row move while sibling positions update before release, and how will keyboard users cancel? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Touch handle interaction moves the whole row and reflows siblings; ordinary non-handle touch scrolling remains usable and cancellation restores order.",
+      "Keyboard users can focus the named handle, pick up, move within bounds, drop and cancel; focus stays with the moved row and announcements expose position/order changes.",
+      "Reduced-motion users retain clear live destination feedback without unnecessary animation.",
+      "Add meaningful interaction regressions for final order and identity, in-progress sibling reflow, pointer/touch cancellation, keyboard focus/announcements and reduced motion."
+    ],
+    "dependsOn": [
+      "F02",
+      "F03",
+      "U01",
+      "F05.a",
+      "U07.b"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "F02",
+      "F03.a",
+      "F03.b",
+      "U01.a",
+      "U01.b",
+      "F05.a",
+      "U07.b"
+    ],
+    "order": 38
+  },
+  {
+    "id": "B07",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Decide the admin authentication and authorization model",
+    "firstStep": "Decide whether portfolio updates actually need an admin UI.",
+    "lesson": "Authentication identifies someone; authorization decides permitted actions.",
+    "assessment": "Why should a public portfolio not require public account registration by default?",
+    "acceptance": [
+      "Record admin scope, account provisioning, credential/session transport and ownership policy.",
+      "If no admin auth is needed, document N/A and close conditional auth tasks deliberately.",
+      "Record whether admin editing, password change, self-service recovery and email verification are required; record explicit N/A decisions instead of introducing public registration or profiles.",
+      "If enabled, define provisioning, admin permissions/ownership, password policy, credential transport/storage, JWT lifetime/key rotation and session invalidation policy; identify cookie/CSRF protections if applicable.",
+      "Review the decision against F03 with one allowed and one denied action example; close conditional tasks deliberately when N/A, preserving the decision evidence."
+    ],
+    "dependsOn": [
+      "F03"
+    ],
+    "estimate": 3,
+    "estimateRationale": "This is a bounded scope/security decision, not auth implementation.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "F03.a",
+      "F03.b"
+    ],
+    "order": 39
   },
   {
     "id": "B01",
@@ -291,8 +1139,88 @@
       "Connect Mongoose with explicit startup/failure/shutdown behavior and update env examples."
     ],
     "dependsOn": [
-      "F03"
-    ]
+      "F03",
+      "B07",
+      "F05.b"
+    ],
+    "estimate": 6,
+    "estimateRationale": "Configuration validation and database lifecycle are separate reviewable behaviors; defer final process-wide shutdown orchestration to B11.",
+    "kind": "parent",
+    "childIds": [
+      "B01.a",
+      "B01.b"
+    ],
+    "executionDependsOn": [
+      "F03.a",
+      "F03.b",
+      "B07",
+      "F05.b"
+    ],
+    "order": 40
+  },
+  {
+    "id": "B01.a",
+    "parentId": "B01",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Validate runtime configuration and environment examples",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Validate runtime configuration and environment examples. Then attempt the smallest observable slice.",
+    "lesson": "Failing clearly at startup is safer than discovering missing settings during a request. This slice focuses on validate runtime configuration and environment examples.",
+    "assessment": "When should /health differ from a database-readiness check? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Centralize typed configuration, explicit local defaults and production-required values; require auth/email settings only when enabled.",
+      "Test missing/invalid values, valid defaults and production requirements; diagnostic output names invalid settings without exposing values.",
+      "Update secret-free environment examples and verify local secrets remain ignored."
+    ],
+    "dependsOn": [
+      "F03",
+      "B07",
+      "F05.b"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "F03.a",
+      "F03.b",
+      "B07",
+      "F05.b"
+    ],
+    "order": 41
+  },
+  {
+    "id": "B01.b",
+    "parentId": "B01",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Connect Mongoose and expose database readiness",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Connect Mongoose and expose database readiness. Then attempt the smallest observable slice.",
+    "lesson": "Failing clearly at startup is safer than discovering missing settings during a request. This slice focuses on connect mongoose and expose database readiness.",
+    "assessment": "When should /health differ from a database-readiness check? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Connect before accepting database-dependent traffic; distinguish process health from dependency readiness.",
+      "Test successful connection, startup failure and unavailable-database readiness with isolated synthetic data.",
+      "Expose connection cleanup for B11 and test it closes the database resource without logging connection secrets."
+    ],
+    "dependsOn": [
+      "F03",
+      "B07",
+      "F05.b",
+      "B01.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "F03.a",
+      "F03.b",
+      "B07",
+      "F05.b",
+      "B01.a"
+    ],
+    "order": 42
   },
   {
     "id": "B02",
@@ -304,11 +1232,24 @@
     "assessment": "Why does application validation alone not guarantee uniqueness?",
     "acceptance": [
       "Define project fields, allowed values, timestamps and needed indexes.",
-      "Verify invalid data and duplicate constraints against a test database."
+      "Verify invalid data and duplicate constraints against a test database.",
+      "Use only F03-approved persisted fields, allowed values, timestamps and query-driven indexes; test required/type/enum validation and duplicate uniqueness in an isolated test database.",
+      "If F03 requires durable reorder state, specify stable identity/order storage and indexes; otherwise record that no reorder persistence is required."
     ],
     "dependsOn": [
-      "B01"
-    ]
+      "B01",
+      "F05.b"
+    ],
+    "estimate": 3,
+    "estimateRationale": "One contracted project model and its database constraints fit a single small issue.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "B01.a",
+      "B01.b",
+      "F05.b"
+    ],
+    "order": 43
   },
   {
     "id": "B03",
@@ -325,7 +1266,83 @@
     "dependsOn": [
       "B01",
       "F03"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Reusable input validation and centralized error mapping have distinct contracts and negative paths.",
+    "kind": "parent",
+    "childIds": [
+      "B03.a",
+      "B03.b"
+    ],
+    "executionDependsOn": [
+      "B01.a",
+      "B01.b",
+      "F03.a",
+      "F03.b"
+    ],
+    "order": 44
+  },
+  {
+    "id": "B03.a",
+    "parentId": "B03",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Validate API bodies, queries and identifiers",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Validate API bodies, queries and identifiers. Then attempt the smallest observable slice.",
+    "lesson": "Controllers map HTTP, services handle use cases, and validators constrain input. This slice focuses on validate api bodies, queries and identifiers.",
+    "assessment": "Why should the API avoid returning raw database errors? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Add strict Zod validation for contracted body/query/path shapes, explicit normalization and safe identifier parsing.",
+      "Demonstrate route/handler/service/data-access boundaries through one real endpoint; avoid ceremonial empty modules.",
+      "Test invalid fields, extra fields, malformed identifiers and valid input before service/database work executes."
+    ],
+    "dependsOn": [
+      "B01",
+      "F03"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B01.a",
+      "B01.b",
+      "F03.a",
+      "F03.b"
+    ],
+    "order": 45
+  },
+  {
+    "id": "B03.b",
+    "parentId": "B03",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Centralize safe HTTP errors and response contracts",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Centralize safe HTTP errors and response contracts. Then attempt the smallest observable slice.",
+    "lesson": "Controllers map HTTP, services handle use cases, and validators constrain input. This slice focuses on centralize safe http errors and response contracts.",
+    "assessment": "Why should the API avoid returning raw database errors? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Map validation, malformed JSON, malformed identifiers, not found, duplicate conflict and unexpected errors to consistent documented status/body contracts; add 401/403 mappings when auth is enabled.",
+      "Test unknown routes and unexpected/rejected asynchronous errors; production responses exclude stack traces, query text, internal paths and credentials.",
+      "Keep controllers responsible for HTTP and services for use cases; do not return raw database/provider exceptions."
+    ],
+    "dependsOn": [
+      "B01",
+      "F03",
+      "B03.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B01.a",
+      "B01.b",
+      "F03.a",
+      "F03.b",
+      "B03.a"
+    ],
+    "order": 46
   },
   {
     "id": "B04",
@@ -342,7 +1359,79 @@
     "dependsOn": [
       "B02",
       "B03"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Bounded list queries and stable detail lookups each warrant focused implementation and contract tests.",
+    "kind": "parent",
+    "childIds": [
+      "B04.a",
+      "B04.b"
+    ],
+    "executionDependsOn": [
+      "B02",
+      "B03.a",
+      "B03.b"
+    ],
+    "order": 47
+  },
+  {
+    "id": "B04.a",
+    "parentId": "B04",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Return bounded public project lists",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Return bounded public project lists. Then attempt the smallest observable slice.",
+    "lesson": "Public reads still need bounded queries and safe response shapes. This slice focuses on return bounded public project lists.",
+    "assessment": "What happens if a caller requests an extremely large page size? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Implement the F03 list contract with bounded page size and allow-listed query/sort/filter fields; construct queries from validated values.",
+      "Use an explicit public response DTO rather than returning database documents.",
+      "Test success, empty list, pagination bounds, oversized/invalid query values and omission of nonpublic fields."
+    ],
+    "dependsOn": [
+      "B02",
+      "B03"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B02",
+      "B03.a",
+      "B03.b"
+    ],
+    "order": 48
+  },
+  {
+    "id": "B04.b",
+    "parentId": "B04",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Return safe project detail by stable slug",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Return safe project detail by stable slug. Then attempt the smallest observable slice.",
+    "lesson": "Public reads still need bounded queries and safe response shapes. This slice focuses on return safe project detail by stable slug.",
+    "assessment": "What happens if a caller requests an extremely large page size? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Implement contracted slug/detail reads with public-field DTOs and a consistent missing-project response.",
+      "Test valid record, unknown slug, malformed path/query input and stable response shape; internal/unpublished fields are absent according to F03 visibility policy."
+    ],
+    "dependsOn": [
+      "B02",
+      "B03",
+      "B04.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B02",
+      "B03.a",
+      "B03.b",
+      "B04.a"
+    ],
+    "order": 49
   },
   {
     "id": "B05",
@@ -359,7 +1448,51 @@
     "dependsOn": [
       "B03",
       "F03"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Submission behavior and endpoint-specific abuse protection are separate reviewable changes.",
+    "kind": "parent",
+    "childIds": [
+      "B05.a",
+      "B05.b"
+    ],
+    "executionDependsOn": [
+      "B03.a",
+      "B03.b",
+      "F03.a",
+      "F03.b"
+    ],
+    "order": 50
+  },
+  {
+    "id": "B05.a",
+    "parentId": "B05",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Validate and process synthetic contact submissions",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Validate and process synthetic contact submissions. Then attempt the smallest observable slice.",
+    "lesson": "Untrusted input must be constrained before persistence or delivery. This slice focuses on validate and process synthetic contact submissions.",
+    "assessment": "How could an otherwise valid contact endpoint be abused? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Implement strict allowed fields and field/size constraints plus only F03-approved storage/delivery behavior; use a provider adapter only if delivery is chosen.",
+      "Test success, invalid/extra/oversized fields and storage/delivery failure with synthetic data; return safe statuses and messages.",
+      "No private message body or personal contact details appear in operational logs; do not send real test email."
+    ],
+    "dependsOn": [
+      "B03",
+      "F03"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B03.a",
+      "B03.b",
+      "F03.a",
+      "F03.b"
+    ],
+    "order": 51
   },
   {
     "id": "B06",
@@ -375,23 +1508,110 @@
     ],
     "dependsOn": [
       "B03"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "HTTP boundary policy and proxy-aware rate limiting require different behavior checks.",
+    "kind": "parent",
+    "childIds": [
+      "B06.a",
+      "B06.b"
+    ],
+    "executionDependsOn": [
+      "B03.a",
+      "B03.b"
+    ],
+    "order": 52
   },
   {
-    "id": "B07",
+    "id": "B06.a",
+    "parentId": "B06",
+    "kind": "subtask",
     "phase": "Backend",
     "area": "backend",
-    "title": "Decide the admin authentication and authorization model",
-    "firstStep": "Decide whether portfolio updates actually need an admin UI.",
-    "lesson": "Authentication identifies someone; authorization decides permitted actions.",
-    "assessment": "Why should a public portfolio not require public account registration by default?",
+    "title": "Apply security headers, explicit CORS and body limits",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Apply security headers, explicit CORS and body limits. Then attempt the smallest observable slice.",
+    "lesson": "CORS controls browser reads; it is not authentication or authorization. This slice focuses on apply security headers, explicit cors and body limits.",
+    "assessment": "Can a command-line client call an API even when CORS denies its origin? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
     "acceptance": [
-      "Record admin scope, account provisioning, credential/session transport and ownership policy.",
-      "If no admin auth is needed, document N/A and close conditional auth tasks deliberately."
+      "Configure Helmet, exact allowed frontend origins and explicit body limits for accepted parsers.",
+      "Test headers, allowed/disallowed origins, preflight behavior, requests without Origin according to policy, and oversized bodies with safe errors.",
+      "Document that CORS is a browser policy and does not authorize API callers."
     ],
     "dependsOn": [
-      "F03"
-    ]
+      "B03"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B03.a",
+      "B03.b"
+    ],
+    "order": 53
+  },
+  {
+    "id": "B06.b",
+    "parentId": "B06",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Add baseline rate limits with trusted proxy policy",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Add baseline rate limits with trusted proxy policy. Then attempt the smallest observable slice.",
+    "lesson": "CORS controls browser reads; it is not authentication or authorization. This slice focuses on add baseline rate limits with trusted proxy policy.",
+    "assessment": "Can a command-line client call an API even when CORS denies its origin? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Apply baseline limits and reusable endpoint-specific configuration; document trusted proxies and limiter storage assumptions for the chosen deployment.",
+      "Test below/at/over threshold behavior, safe 429 responses and reset behavior deterministically.",
+      "Test forwarded-IP handling under trusted/untrusted proxy assumptions so callers cannot bypass limits by supplying a header."
+    ],
+    "dependsOn": [
+      "B03",
+      "B06.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B03.a",
+      "B03.b",
+      "B06.a"
+    ],
+    "order": 54
+  },
+  {
+    "id": "B05.b",
+    "parentId": "B05",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Protect contact submissions from repeats and abuse",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Protect contact submissions from repeats and abuse. Then attempt the smallest observable slice.",
+    "lesson": "Untrusted input must be constrained before persistence or delivery. This slice focuses on protect contact submissions from repeats and abuse.",
+    "assessment": "How could an otherwise valid contact endpoint be abused? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Implement the agreed duplicate handling and contact-specific abuse/rate limits using B06 infrastructure; document the configured threshold and window.",
+      "Test repeated submissions, threshold crossing, reset/recovery of the limit and safe failure responses; verify abuse requests do not trigger storage/delivery work.",
+      "Verify logs omit private message text and sensitive request values in success, duplicate, limit and provider-failure paths."
+    ],
+    "dependsOn": [
+      "B03",
+      "F03",
+      "B05.a",
+      "B06"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B03.a",
+      "B03.b",
+      "F03.a",
+      "F03.b",
+      "B05.a",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 55
   },
   {
     "id": "B08",
@@ -409,7 +1629,123 @@
       "B07",
       "B03",
       "B06"
-    ]
+    ],
+    "estimate": 12,
+    "estimateRationale": "Conditional account provisioning/password handling, login issuance and token enforcement are three substantive security behaviors.",
+    "kind": "parent",
+    "childIds": [
+      "B08.a",
+      "B08.b",
+      "B08.c"
+    ],
+    "executionDependsOn": [
+      "B07",
+      "B03.a",
+      "B03.b",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 56
+  },
+  {
+    "id": "B08.a",
+    "parentId": "B08",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Provision conditional admin credentials with bcrypt",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Provision conditional admin credentials with bcrypt. Then attempt the smallest observable slice.",
+    "lesson": "bcrypt hashes passwords; JWT signatures protect claims but do not hide them. This slice focuses on provision conditional admin credentials with bcrypt.",
+    "assessment": "What belongs in a JWT, and what checks are needed beyond decoding it? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only if B07 requires auth: implement the approved admin provisioning and password policy; hash with bcrypt and never store plaintext.",
+      "Test password validation, bcrypt verification, wrong passwords and safe account serialization; hashes/passwords never appear in responses or logs.",
+      "Do not add public registration; record N/A evidence when admin auth is not required."
+    ],
+    "dependsOn": [
+      "B07",
+      "B03",
+      "B06"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B07",
+      "B03.a",
+      "B03.b",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 57
+  },
+  {
+    "id": "B08.b",
+    "parentId": "B08",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Implement conditional enumeration-resistant admin login",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Implement conditional enumeration-resistant admin login. Then attempt the smallest observable slice.",
+    "lesson": "bcrypt hashes passwords; JWT signatures protect claims but do not hide them. This slice focuses on implement conditional enumeration-resistant admin login.",
+    "assessment": "What belongs in a JWT, and what checks are needed beyond decoding it? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only if required: validate login, verify bcrypt credentials and issue minimal JWT claims with configured expiry, algorithm, issuer and audience policy.",
+      "Test valid credentials, wrong password and unknown account with generic failure behavior; verify password/hash/secret absence from token claims and responses.",
+      "Apply and test stricter login account/IP abuse limits using B06; implement the approved credential transport and applicable cookie/CSRF protections."
+    ],
+    "dependsOn": [
+      "B07",
+      "B03",
+      "B06",
+      "B08.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B07",
+      "B03.a",
+      "B03.b",
+      "B06.a",
+      "B06.b",
+      "B08.a"
+    ],
+    "order": 58
+  },
+  {
+    "id": "B08.c",
+    "parentId": "B08",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Verify conditional JWTs and enforce admin access",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Verify conditional JWTs and enforce admin access. Then attempt the smallest observable slice.",
+    "lesson": "bcrypt hashes passwords; JWT signatures protect claims but do not hide them. This slice focuses on verify conditional jwts and enforce admin access.",
+    "assessment": "What belongs in a JWT, and what checks are needed beyond decoding it? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only if required: verify signature, allowed algorithm, expiry, subject and the explicit issuer/audience policy before establishing a trusted principal.",
+      "Reject missing, malformed, tampered, expired, wrong-algorithm and wrong-issuer/audience tokens in integration tests.",
+      "Test authorized access versus authenticated insufficient permissions and untrusted client-supplied identity; return safe 401/403 responses and account DTOs."
+    ],
+    "dependsOn": [
+      "B07",
+      "B03",
+      "B06",
+      "B08.b"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B07",
+      "B03.a",
+      "B03.b",
+      "B06.a",
+      "B06.b",
+      "B08.b"
+    ],
+    "order": 59
   },
   {
     "id": "B09",
@@ -421,11 +1757,147 @@
     "assessment": "How do expiry, revocation and a one-use recovery token differ?",
     "acceptance": [
       "If required, define revocation and secure reset/change behavior; add email verification only if needed.",
-      "Verify expiry, single use, token hashing, enumeration protection and account/IP abuse limits."
+      "Verify expiry, single use, token hashing, enumeration protection and account/IP abuse limits.",
+      "Each recovery/change/verification child is conditional independently; a N/A recovery decision must not prevent an approved authenticated password-change flow."
     ],
     "dependsOn": [
       "B08"
-    ]
+    ],
+    "estimate": 15,
+    "estimateRationale": "Session invalidation, recovery-token lifecycle and credential-change flows are too broad for one actionable issue; all remain conditional.",
+    "kind": "parent",
+    "childIds": [
+      "B09.a",
+      "B09.b",
+      "B09.c",
+      "B09.d"
+    ],
+    "executionDependsOn": [
+      "B08.a",
+      "B08.b",
+      "B08.c"
+    ],
+    "order": 60
+  },
+  {
+    "id": "B09.a",
+    "parentId": "B09",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Enforce conditional session invalidation policy",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Enforce conditional session invalidation policy. Then attempt the smallest observable slice.",
+    "lesson": "A password reset is incomplete if unwanted sessions remain usable. This slice focuses on enforce conditional session invalidation policy.",
+    "assessment": "How do expiry, revocation and a one-use recovery token differ? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only if B07 requires auth: implement the approved revocation/version/session policy and documented logout semantics.",
+      "Test a formerly valid credential after logout/revocation according to policy, unaffected credentials where applicable, expiry and safe failure responses.",
+      "Provide a reusable invalidation operation for reset/change; do not assume short expiry alone revokes an active session."
+    ],
+    "dependsOn": [
+      "B08"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B08.a",
+      "B08.b",
+      "B08.c"
+    ],
+    "order": 61
+  },
+  {
+    "id": "B09.b",
+    "parentId": "B09",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Implement conditional account recovery token lifecycle",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Implement conditional account recovery token lifecycle. Then attempt the smallest observable slice.",
+    "lesson": "A password reset is incomplete if unwanted sessions remain usable. This slice focuses on implement conditional account recovery token lifecycle.",
+    "assessment": "How do expiry, revocation and a one-use recovery token differ? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only if B07 requires recovery: generate cryptographically random typed tokens, store hashes with expiry and consume atomically once; invalidate replaced tokens according to policy.",
+      "Test valid, invalid, expired, wrong-type, reused and replaced tokens, including concurrent consumption; expiry checks do not depend on TTL cleanup timing.",
+      "Use generic unknown/known account responses and account/IP request/attempt limits; test no raw tokens in database, responses or logs except the approved delivery channel.",
+      "If recovery email is chosen, use configured trusted HTTPS production links and sender/provider adapter, with a tested recoverable delivery failure path; otherwise follow the recorded recovery policy."
+    ],
+    "dependsOn": [
+      "B08",
+      "B09.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B08.a",
+      "B08.b",
+      "B08.c",
+      "B09.a"
+    ],
+    "order": 62
+  },
+  {
+    "id": "B09.c",
+    "parentId": "B09",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Complete conditional password reset and authenticated change",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Complete conditional password reset and authenticated change. Then attempt the smallest observable slice.",
+    "lesson": "A password reset is incomplete if unwanted sessions remain usable. This slice focuses on complete conditional password reset and authenticated change.",
+    "assessment": "How do expiry, revocation and a one-use recovery token differ? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only for B07-approved flows: reset with a valid recovery proof and change with authenticated identity/current password; validate and bcrypt-hash the replacement password.",
+      "Test old password rejected, new password accepted, wrong current password, invalid new password, missing credentials and attempts to change another account.",
+      "Test session invalidation after reset/change and single-use recovery completion.",
+      "Record N/A evidence for flows excluded by B07."
+    ],
+    "dependsOn": [
+      "B08",
+      "B09.b"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B08.a",
+      "B08.b",
+      "B08.c",
+      "B09.b"
+    ],
+    "order": 63
+  },
+  {
+    "id": "B09.d",
+    "parentId": "B09",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Implement email verification only if explicitly required",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Implement email verification only if explicitly required. Then attempt the smallest observable slice.",
+    "lesson": "A password reset is incomplete if unwanted sessions remain usable. This slice focuses on implement email verification only if explicitly required.",
+    "assessment": "How do expiry, revocation and a one-use recovery token differ? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only if B07 requires email verification: implement typed, hashed, expiring, single-use verification tokens and approved delivery through trusted HTTPS production links.",
+      "Test valid/invalid/expired/reused/wrong-type tokens, generic resend responses, replacement policy and account/IP abuse limits; verify no raw tokens in database or logs.",
+      "If verification is not required, record N/A and close this conditional child without implementation."
+    ],
+    "dependsOn": [
+      "B08",
+      "B09.b"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B08.a",
+      "B08.b",
+      "B08.c",
+      "B09.b"
+    ],
+    "order": 64
   },
   {
     "id": "B10",
@@ -437,12 +1909,92 @@
     "assessment": "Why is passing request.body directly to a database update risky?",
     "acceptance": [
       "If admin editing is required, implement validated authorized create/update/delete operations.",
-      "Test missing credentials, insufficient permissions, invalid identifiers and forbidden fields."
+      "Test missing credentials, insufficient permissions, invalid identifiers and forbidden fields.",
+      "Only if durable reordering is approved in F03, include a validated authorized order-update contract, complete row-set validation and concurrency/error behavior; split additional work above 4 points before starting it."
     ],
     "dependsOn": [
       "B04",
       "B08"
-    ]
+    ],
+    "estimate": 8,
+    "estimateRationale": "Create/update and delete are separate mutation contracts; each retains authorization and field-validation coverage.",
+    "kind": "parent",
+    "childIds": [
+      "B10.a",
+      "B10.b"
+    ],
+    "executionDependsOn": [
+      "B04.a",
+      "B04.b",
+      "B08.a",
+      "B08.b",
+      "B08.c"
+    ],
+    "order": 65
+  },
+  {
+    "id": "B10.a",
+    "parentId": "B10",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Implement conditional authorized project creation and update",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Implement conditional authorized project creation and update. Then attempt the smallest observable slice.",
+    "lesson": "Every write needs a field allow-list and permission decision. This slice focuses on implement conditional authorized project creation and update.",
+    "assessment": "Why is passing request.body directly to a database update risky? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only if admin editing is approved: implement contracted create/update with strict allow-lists, identifier validation and permission/ownership decisions from the trusted principal.",
+      "Test success, missing/invalid credentials, insufficient permissions, forbidden/internal fields, invalid identifiers, empty invalid updates, duplicates and missing records.",
+      "Never pass raw request.body or client identity directly into database updates; return safe DTOs and errors."
+    ],
+    "dependsOn": [
+      "B04",
+      "B08"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B04.a",
+      "B04.b",
+      "B08.a",
+      "B08.b",
+      "B08.c"
+    ],
+    "order": 66
+  },
+  {
+    "id": "B10.b",
+    "parentId": "B10",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Implement conditional authorized project deletion",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Implement conditional authorized project deletion. Then attempt the smallest observable slice.",
+    "lesson": "Every write needs a field allow-list and permission decision. This slice focuses on implement conditional authorized project deletion.",
+    "assessment": "Why is passing request.body directly to a database update risky? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only if admin editing is approved: implement the contracted delete behavior and explicit resource authorization.",
+      "Test authorized deletion, missing credentials, insufficient permissions, invalid identifiers, unknown/deleted records and attempts to target resources outside the approved ownership policy.",
+      "Verify the removed record is absent from public reads and successful/failing mutation responses expose no private fields."
+    ],
+    "dependsOn": [
+      "B04",
+      "B08",
+      "B10.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B04.a",
+      "B04.b",
+      "B08.a",
+      "B08.b",
+      "B08.c",
+      "B10.a"
+    ],
+    "order": 67
   },
   {
     "id": "B11",
@@ -459,7 +2011,83 @@
     "dependsOn": [
       "B01",
       "B06"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Structured redaction and bounded process shutdown are distinct operational deliverables; this finalizes B01 cleanup hooks.",
+    "kind": "parent",
+    "childIds": [
+      "B11.a",
+      "B11.b"
+    ],
+    "executionDependsOn": [
+      "B01.a",
+      "B01.b",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 68
+  },
+  {
+    "id": "B11.a",
+    "parentId": "B11",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Add structured redacted operational and security logs",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Add structured redacted operational and security logs. Then attempt the smallest observable slice.",
+    "lesson": "Logs should explain failures without becoming a second store of secrets. This slice focuses on add structured redacted operational and security logs.",
+    "assessment": "What must never be logged from an authentication or contact request? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Record useful startup, request/error and applicable security events using structured logging and defined sensitive-field exclusions.",
+      "Test success/failure logs exclude credentials, authorization/cookies, raw tokens, database URI secrets and contact message/personal content.",
+      "Correlate safe request/error events without logging raw request bodies; conditional auth events remain N/A when auth is disabled."
+    ],
+    "dependsOn": [
+      "B01",
+      "B06"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B01.a",
+      "B01.b",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 69
+  },
+  {
+    "id": "B11.b",
+    "parentId": "B11",
+    "kind": "subtask",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Drain HTTP and database resources on shutdown and fatal errors",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Drain HTTP and database resources on shutdown and fatal errors. Then attempt the smallest observable slice.",
+    "lesson": "Logs should explain failures without becoming a second store of secrets. This slice focuses on drain http and database resources on shutdown and fatal errors.",
+    "assessment": "What must never be logged from an authentication or contact request? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Handle termination with readiness withdrawn, HTTP draining, database cleanup and a bounded timeout; reuse B01 resource hooks.",
+      "Test termination, repeated termination signals, in-flight completion and forced-timeout behavior with isolated resources.",
+      "Demonstrate safe unexpected-error handling: request failures use B03 safe responses, process-level fatal failures are redacted and terminate cleanly with appropriate failure status."
+    ],
+    "dependsOn": [
+      "B01",
+      "B06",
+      "B11.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B01.a",
+      "B01.b",
+      "B06.a",
+      "B06.b",
+      "B11.a"
+    ],
+    "order": 70
   },
   {
     "id": "I01",
@@ -477,7 +2105,89 @@
       "U04",
       "B04",
       "B06"
-    ]
+    ],
+    "estimate": 7,
+    "estimateRationale": "List and detail API integration have separate empty, failure and route semantics.",
+    "kind": "parent",
+    "childIds": [
+      "I01.a",
+      "I01.b"
+    ],
+    "executionDependsOn": [
+      "U04.a",
+      "U04.b",
+      "B04.a",
+      "B04.b",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 71
+  },
+  {
+    "id": "I01.a",
+    "parentId": "I01",
+    "kind": "subtask",
+    "phase": "Integration",
+    "area": "fullstack",
+    "title": "Connect the project list to configured API data",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Connect the project list to configured API data. Then attempt the smallest observable slice.",
+    "lesson": "Network requests can fail independently of the page rendering. This slice focuses on connect the project list to configured api data.",
+    "assessment": "How will the UI distinguish an empty result from a failed request? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Configure one public API base URL without frontend secrets and consume the agreed list response.",
+      "Verify success, loading, empty and failed responses are distinguishable and accessible."
+    ],
+    "dependsOn": [
+      "U04",
+      "B04",
+      "B06"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "U04.a",
+      "U04.b",
+      "B04.a",
+      "B04.b",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 72
+  },
+  {
+    "id": "I01.b",
+    "parentId": "I01",
+    "kind": "subtask",
+    "phase": "Integration",
+    "area": "fullstack",
+    "title": "Connect project detail routing and API failure behavior",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Connect project detail routing and API failure behavior. Then attempt the smallest observable slice.",
+    "lesson": "Network requests can fail independently of the page rendering. This slice focuses on connect project detail routing and api failure behavior.",
+    "assessment": "How will the UI distinguish an empty result from a failed request? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Use the same API configuration for project detail views and preserve stable slug navigation.",
+      "Verify direct known-project navigation, unknown project response, network/server failure and no private server fields in rendered output."
+    ],
+    "dependsOn": [
+      "U04",
+      "B04",
+      "B06",
+      "I01.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "U04.a",
+      "U04.b",
+      "B04.a",
+      "B04.b",
+      "B06.a",
+      "B06.b",
+      "I01.a"
+    ],
+    "order": 73
   },
   {
     "id": "I02",
@@ -495,7 +2205,89 @@
       "U05",
       "B05",
       "B06"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Contact success and recoverable server/network failures are coherent separate integration deliveries.",
+    "kind": "parent",
+    "childIds": [
+      "I02.a",
+      "I02.b"
+    ],
+    "executionDependsOn": [
+      "U05.a",
+      "U05.b",
+      "B05.a",
+      "B05.b",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 74
+  },
+  {
+    "id": "I02.a",
+    "parentId": "I02",
+    "kind": "subtask",
+    "phase": "Integration",
+    "area": "fullstack",
+    "title": "Submit synthetic contact data through the real endpoint",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Submit synthetic contact data through the real endpoint. Then attempt the smallest observable slice.",
+    "lesson": "A good integration maps server validation errors into actionable UI feedback. This slice focuses on submit synthetic contact data through the real endpoint.",
+    "assessment": "Why should a failed request not erase a person's message? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Connect the agreed contact endpoint and preserve the pending/success state contract.",
+      "Prove a synthetic submission succeeds and rapid repeated clicks do not create accidental duplicate requests."
+    ],
+    "dependsOn": [
+      "U05",
+      "B05",
+      "B06"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "U05.a",
+      "U05.b",
+      "B05.a",
+      "B05.b",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 75
+  },
+  {
+    "id": "I02.b",
+    "parentId": "I02",
+    "kind": "subtask",
+    "phase": "Integration",
+    "area": "fullstack",
+    "title": "Map contact validation, throttling and network failures",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Map contact validation, throttling and network failures. Then attempt the smallest observable slice.",
+    "lesson": "A good integration maps server validation errors into actionable UI feedback. This slice focuses on map contact validation, throttling and network failures.",
+    "assessment": "Why should a failed request not erase a person's message? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Map server field validation and rate-limit responses into actionable accessible feedback.",
+      "Prove validation rejection, throttling and network/server failure preserve recoverable input and allow a deliberate retry."
+    ],
+    "dependsOn": [
+      "U05",
+      "B05",
+      "B06",
+      "I02.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "U05.a",
+      "U05.b",
+      "B05.a",
+      "B05.b",
+      "B06.a",
+      "B06.b",
+      "I02.a"
+    ],
+    "order": 76
   },
   {
     "id": "I03",
@@ -507,12 +2299,88 @@
     "assessment": "Can hiding an Edit button prevent an unauthorized API call?",
     "acceptance": [
       "If required, connect authenticated content editing to protected backend routes.",
-      "Verify unauthorized access, session expiry, validation and server-enforced permissions."
+      "Verify unauthorized access, session expiry, validation and server-enforced permissions.",
+      "If B07 records admin editing N/A, close both children as N/A with that decision linked; do not invent registration, recovery screens or an admin dashboard.",
+      "If F03 requires persisted ordering, connect only the approved order-update contract and verify failure rollback/conflict behavior; otherwise keep row ordering local as decided."
     ],
     "dependsOn": [
       "B10",
       "I01"
-    ]
+    ],
+    "estimate": 8,
+    "estimateRationale": "Conditional authenticated editing combines session lifecycle and protected mutation workflows.",
+    "kind": "parent",
+    "childIds": [
+      "I03.a",
+      "I03.b"
+    ],
+    "executionDependsOn": [
+      "B10.a",
+      "B10.b",
+      "I01.a",
+      "I01.b"
+    ],
+    "order": 77
+  },
+  {
+    "id": "I03.a",
+    "parentId": "I03",
+    "kind": "subtask",
+    "phase": "Integration",
+    "area": "fullstack",
+    "title": "Connect the conditional authenticated admin access flow",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Connect the conditional authenticated admin access flow. Then attempt the smallest observable slice.",
+    "lesson": "Client route guards improve navigation but do not secure API writes. This slice focuses on connect the conditional authenticated admin access flow.",
+    "assessment": "Can hiding an Edit button prevent an unauthorized API call? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only if B07 requires admin editing, connect the agreed authentication/session transport to the minimal confirmed admin flow.",
+      "Verify unauthenticated access and session expiry lead to useful feedback; client navigation guards are not treated as API authorization."
+    ],
+    "dependsOn": [
+      "B10",
+      "I01"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B10.a",
+      "B10.b",
+      "I01.a",
+      "I01.b"
+    ],
+    "order": 78
+  },
+  {
+    "id": "I03.b",
+    "parentId": "I03",
+    "kind": "subtask",
+    "phase": "Integration",
+    "area": "fullstack",
+    "title": "Connect conditional protected editing and validation",
+    "estimate": 4,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Connect conditional protected editing and validation. Then attempt the smallest observable slice.",
+    "lesson": "Client route guards improve navigation but do not secure API writes. This slice focuses on connect conditional protected editing and validation.",
+    "assessment": "Can hiding an Edit button prevent an unauthorized API call? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Only when required, connect agreed create/update/delete content operations to protected backend routes with minimal UI.",
+      "Verify server-enforced permissions, invalid field feedback, expired-session failures and successful edits reflected in public content; use synthetic data."
+    ],
+    "dependsOn": [
+      "B10",
+      "I01",
+      "I03.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "B10.a",
+      "B10.b",
+      "I01.a",
+      "I01.b",
+      "I03.a"
+    ],
+    "order": 79
   },
   {
     "id": "Q01",
@@ -524,13 +2392,147 @@
     "assessment": "What makes a visible focus indicator usable on both themes?",
     "acceptance": [
       "Check landmarks, headings, forms, contrast, image text, focus and reduced motion.",
-      "Record and fix issues found at mobile/tablet/desktop widths and with a screen-reader spot check."
+      "Record and fix issues found at mobile/tablet/desktop widths and with a screen-reader spot check.",
+      "Reorder interaction must be included in the release accessibility checklist."
     ],
     "dependsOn": [
       "I01",
       "I02",
-      "U06"
-    ]
+      "U06",
+      "U07"
+    ],
+    "estimate": 8,
+    "estimateRationale": "Keyboard/screen-reader checks, responsive contrast, and remediations are separate review passes.",
+    "kind": "parent",
+    "childIds": [
+      "Q01.a",
+      "Q01.b",
+      "Q01.c"
+    ],
+    "executionDependsOn": [
+      "I01.a",
+      "I01.b",
+      "I02.a",
+      "I02.b",
+      "U06.a",
+      "U06.b",
+      "U07.a",
+      "U07.b",
+      "U07.c"
+    ],
+    "order": 80
+  },
+  {
+    "id": "Q01.a",
+    "parentId": "Q01",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Audit keyboard, screen-reader and reorder accessibility",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Audit keyboard, screen-reader and reorder accessibility. Then attempt the smallest observable slice.",
+    "lesson": "Automated tools catch some accessibility issues; real interaction checks remain essential. This slice focuses on audit keyboard, screen-reader and reorder accessibility.",
+    "assessment": "What makes a visible focus indicator usable on both themes? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Verify landmarks, headings, names, form errors, image alternatives, skip navigation and focus order.",
+      "Exercise whole-row reorder by keyboard and touch: focus follows identity, positions are announced, drop/cancel and bounds work; record screen-reader evidence."
+    ],
+    "dependsOn": [
+      "I01",
+      "I02",
+      "U06",
+      "U07"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "I01.a",
+      "I01.b",
+      "I02.a",
+      "I02.b",
+      "U06.a",
+      "U06.b",
+      "U07.a",
+      "U07.b",
+      "U07.c"
+    ],
+    "order": 81
+  },
+  {
+    "id": "Q01.b",
+    "parentId": "Q01",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Audit responsive layouts, themes and reduced motion",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Audit responsive layouts, themes and reduced motion. Then attempt the smallest observable slice.",
+    "lesson": "Automated tools catch some accessibility issues; real interaction checks remain essential. This slice focuses on audit responsive layouts, themes and reduced motion.",
+    "assessment": "What makes a visible focus indicator usable on both themes? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Check narrow mobile, tablet and desktop layouts for overlap, horizontal overflow and reachable controls.",
+      "Verify theme/focus contrast and reduced-motion behavior, including visible reorder destinations without excessive animation."
+    ],
+    "dependsOn": [
+      "I01",
+      "I02",
+      "U06",
+      "U07",
+      "Q01.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "I01.a",
+      "I01.b",
+      "I02.a",
+      "I02.b",
+      "U06.a",
+      "U06.b",
+      "U07.a",
+      "U07.b",
+      "U07.c",
+      "Q01.a"
+    ],
+    "order": 82
+  },
+  {
+    "id": "Q01.c",
+    "parentId": "Q01",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Resolve and recheck accessibility findings",
+    "estimate": 2,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Resolve and recheck accessibility findings. Then attempt the smallest observable slice.",
+    "lesson": "Automated tools catch some accessibility issues; real interaction checks remain essential. This slice focuses on resolve and recheck accessibility findings.",
+    "assessment": "What makes a visible focus indicator usable on both themes? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Prioritize and fix blocking audit findings without expanding feature scope.",
+      "Record before/after evidence and rerun the affected checks; leave explicit documented limitations for final review."
+    ],
+    "dependsOn": [
+      "I01",
+      "I02",
+      "U06",
+      "U07",
+      "Q01.b"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "I01.a",
+      "I01.b",
+      "I02.a",
+      "I02.b",
+      "U06.a",
+      "U06.b",
+      "U07.a",
+      "U07.b",
+      "U07.c",
+      "Q01.b"
+    ],
+    "order": 83
   },
   {
     "id": "Q02",
@@ -546,8 +2548,186 @@
     ],
     "dependsOn": [
       "I01",
-      "I02"
-    ]
+      "I02",
+      "U07",
+      "B07",
+      "B09",
+      "B10"
+    ],
+    "estimate": 8,
+    "estimateRationale": "Frontend journeys, API negative paths and cross-layer regressions need distinct fixtures.",
+    "kind": "parent",
+    "childIds": [
+      "Q02.a",
+      "Q02.b",
+      "Q02.c"
+    ],
+    "executionDependsOn": [
+      "I01.a",
+      "I01.b",
+      "I02.a",
+      "I02.b",
+      "U07.a",
+      "U07.b",
+      "U07.c",
+      "B07",
+      "B09.a",
+      "B09.b",
+      "B09.c",
+      "B09.d",
+      "B10.a",
+      "B10.b"
+    ],
+    "order": 84
+  },
+  {
+    "id": "Q02.a",
+    "parentId": "Q02",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Cover frontend journeys and reorder regressions",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Cover frontend journeys and reorder regressions. Then attempt the smallest observable slice.",
+    "lesson": "Tests are most valuable when they prove an observable contract or interaction. This slice focuses on cover frontend journeys and reorder regressions.",
+    "assessment": "What bug would your test catch that a snapshot alone would miss? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Cover navigation, theme persistence, project success/empty/error and contact pending/failure interactions with meaningful tests.",
+      "Verify full-row movement, live sibling reflow before drop, final order, identity, cancel and keyboard/touch controls; reuse U07 tests rather than duplicating them."
+    ],
+    "dependsOn": [
+      "I01",
+      "I02",
+      "U07",
+      "B07",
+      "B09",
+      "B10",
+      "F05.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "I01.a",
+      "I01.b",
+      "I02.a",
+      "I02.b",
+      "U07.a",
+      "U07.b",
+      "U07.c",
+      "B07",
+      "B09.a",
+      "B09.b",
+      "B09.c",
+      "B09.d",
+      "B10.a",
+      "B10.b",
+      "F05.a"
+    ],
+    "order": 85
+  },
+  {
+    "id": "Q02.b",
+    "parentId": "Q02",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Cover API and applicable security failure paths",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Cover API and applicable security failure paths. Then attempt the smallest observable slice.",
+    "lesson": "Tests are most valuable when they prove an observable contract or interaction. This slice focuses on cover api and applicable security failure paths.",
+    "assessment": "What bug would your test catch that a snapshot alone would miss? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Test valid/invalid identifiers, strict fields, safe errors/DTOs, query limits, contact abuse and database constraints using isolated synthetic data.",
+      "Where auth is required, verify expired/tampered tokens, authorization, session invalidation and applicable recovery abuse paths; record N/A decisions."
+    ],
+    "dependsOn": [
+      "I01",
+      "I02",
+      "U07",
+      "B07",
+      "B09",
+      "B10",
+      "B04",
+      "B05",
+      "B06",
+      "F05.b"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "I01.a",
+      "I01.b",
+      "I02.a",
+      "I02.b",
+      "U07.a",
+      "U07.b",
+      "U07.c",
+      "B07",
+      "B09.a",
+      "B09.b",
+      "B09.c",
+      "B09.d",
+      "B10.a",
+      "B10.b",
+      "B04.a",
+      "B04.b",
+      "B05.a",
+      "B05.b",
+      "B06.a",
+      "B06.b",
+      "F05.b"
+    ],
+    "order": 86
+  },
+  {
+    "id": "Q02.c",
+    "parentId": "Q02",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Run deterministic cross-layer regression checks in CI",
+    "estimate": 2,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Run deterministic cross-layer regression checks in CI. Then attempt the smallest observable slice.",
+    "lesson": "Tests are most valuable when they prove an observable contract or interaction. This slice focuses on run deterministic cross-layer regression checks in ci.",
+    "assessment": "What bug would your test catch that a snapshot alone would miss? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Run representative project/contact journeys against controlled test data; include admin paths only when required.",
+      "Demonstrate repeatable runs with isolated data, no production secrets and no leaked processes; report all relevant commands/results."
+    ],
+    "dependsOn": [
+      "I01",
+      "I02",
+      "U07",
+      "B07",
+      "B09",
+      "B10",
+      "Q02.a",
+      "Q02.b",
+      "I03"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "I01.a",
+      "I01.b",
+      "I02.a",
+      "I02.b",
+      "U07.a",
+      "U07.b",
+      "U07.c",
+      "B07",
+      "B09.a",
+      "B09.b",
+      "B09.c",
+      "B09.d",
+      "B10.a",
+      "B10.b",
+      "Q02.a",
+      "Q02.b",
+      "I03.a",
+      "I03.b"
+    ],
+    "order": 87
   },
   {
     "id": "Q03",
@@ -564,7 +2744,121 @@
     "dependsOn": [
       "Q01",
       "U04"
-    ]
+    ],
+    "estimate": 8,
+    "estimateRationale": "Metadata/search discoverability, assets and measurement-based tuning have separate outcomes.",
+    "kind": "parent",
+    "childIds": [
+      "Q03.a",
+      "Q03.b",
+      "Q03.c"
+    ],
+    "executionDependsOn": [
+      "Q01.a",
+      "Q01.b",
+      "Q01.c",
+      "U04.a",
+      "U04.b"
+    ],
+    "order": 88
+  },
+  {
+    "id": "Q03.a",
+    "parentId": "Q03",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "frontend",
+    "title": "Complete metadata and search-discovery files",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Complete metadata and search-discovery files. Then attempt the smallest observable slice.",
+    "lesson": "Performance work should use measurements; metadata helps previews and discovery. This slice focuses on complete metadata and search-discovery files.",
+    "assessment": "What is the difference between a social preview image and an image alt description? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Add real page metadata, social previews, favicon, robots and sitemap appropriate to actual public routes.",
+      "Verify canonical URLs, project metadata and unknown/private routes do not produce misleading search entries."
+    ],
+    "dependsOn": [
+      "Q01",
+      "U04"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "Q01.a",
+      "Q01.b",
+      "Q01.c",
+      "U04.a",
+      "U04.b"
+    ],
+    "order": 89
+  },
+  {
+    "id": "Q03.b",
+    "parentId": "Q03",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "frontend",
+    "title": "Optimize images, fonts and layout stability",
+    "estimate": 2,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Optimize images, fonts and layout stability. Then attempt the smallest observable slice.",
+    "lesson": "Performance work should use measurements; metadata helps previews and discovery. This slice focuses on optimize images, fonts and layout stability.",
+    "assessment": "What is the difference between a social preview image and an image alt description? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Use appropriately sized responsive images and licensed predictable font loading with meaningful alternatives.",
+      "Verify reserved image geometry and reduced font/image layout shift on representative pages."
+    ],
+    "dependsOn": [
+      "Q01",
+      "U04",
+      "Q03.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "Q01.a",
+      "Q01.b",
+      "Q01.c",
+      "U04.a",
+      "U04.b",
+      "Q03.a"
+    ],
+    "order": 90
+  },
+  {
+    "id": "Q03.c",
+    "parentId": "Q03",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "frontend",
+    "title": "Measure and improve frontend performance",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Measure and improve frontend performance. Then attempt the smallest observable slice.",
+    "lesson": "Performance work should use measurements; metadata helps previews and discovery. This slice focuses on measure and improve frontend performance.",
+    "assessment": "What is the difference between a social preview image and an image alt description? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Record baseline and post-change performance on a representative mobile page; fix material measured bottlenecks.",
+      "Include reorder frame/layout responsiveness and reduced-motion behavior without sacrificing semantic or input behavior."
+    ],
+    "dependsOn": [
+      "Q01",
+      "U04",
+      "Q03.b",
+      "U07"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "Q01.a",
+      "Q01.b",
+      "Q01.c",
+      "U04.a",
+      "U04.b",
+      "Q03.b",
+      "U07.a",
+      "U07.b",
+      "U07.c"
+    ],
+    "order": 91
   },
   {
     "id": "Q04",
@@ -581,7 +2875,87 @@
     "dependsOn": [
       "Q02",
       "Q03"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Clean-clone CI coverage and dependency/secret review are separate release gates.",
+    "kind": "parent",
+    "childIds": [
+      "Q04.a",
+      "Q04.b"
+    ],
+    "executionDependsOn": [
+      "Q02.a",
+      "Q02.b",
+      "Q02.c",
+      "Q03.a",
+      "Q03.b",
+      "Q03.c"
+    ],
+    "order": 92
+  },
+  {
+    "id": "Q04.a",
+    "parentId": "Q04",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Verify clean-clone CI and full lint/test coverage",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Verify clean-clone CI and full lint/test coverage. Then attempt the smallest observable slice.",
+    "lesson": "A green build does not prove every user flow is correct. This slice focuses on verify clean-clone ci and full lint/test coverage.",
+    "assessment": "What does the starter backend lint command check, and what does it omit? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Install from the lockfile in a fresh environment and run lint, frontend/API tests and production build.",
+      "Expand the starter syntax-only backend lint to cover new code as appropriate; document exactly what each check validates."
+    ],
+    "dependsOn": [
+      "Q02",
+      "Q03"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "Q02.a",
+      "Q02.b",
+      "Q02.c",
+      "Q03.a",
+      "Q03.b",
+      "Q03.c"
+    ],
+    "order": 93
+  },
+  {
+    "id": "Q04.b",
+    "parentId": "Q04",
+    "kind": "subtask",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Review dependency advisories and secret exposure",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Review dependency advisories and secret exposure. Then attempt the smallest observable slice.",
+    "lesson": "A green build does not prove every user flow is correct. This slice focuses on review dependency advisories and secret exposure.",
+    "assessment": "What does the starter backend lint command check, and what does it omit? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Review direct/transitive advisories and remediate material findings without blind upgrades.",
+      "Check ignored env files, bundles, logs, fixtures and CI for secrets; verify actual public configuration and document remaining limitations."
+    ],
+    "dependsOn": [
+      "Q02",
+      "Q03",
+      "Q04.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "Q02.a",
+      "Q02.b",
+      "Q02.c",
+      "Q03.a",
+      "Q03.b",
+      "Q03.c",
+      "Q04.a"
+    ],
+    "order": 94
   },
   {
     "id": "P01",
@@ -597,7 +2971,16 @@
     ],
     "dependsOn": [
       "Q04"
-    ]
+    ],
+    "estimate": 4,
+    "estimateRationale": "One documented hosting/budget/networking decision; no provisioning or spending in this task.",
+    "kind": "task",
+    "childIds": [],
+    "executionDependsOn": [
+      "Q04.a",
+      "Q04.b"
+    ],
+    "order": 95
   },
   {
     "id": "P02",
@@ -614,7 +2997,109 @@
     "dependsOn": [
       "P01",
       "B11"
-    ]
+    ],
+    "estimate": 8,
+    "estimateRationale": "Database access, production config and backup recovery are independent operational controls.",
+    "kind": "parent",
+    "childIds": [
+      "P02.a",
+      "P02.b",
+      "P02.c"
+    ],
+    "executionDependsOn": [
+      "P01",
+      "B11.a",
+      "B11.b"
+    ],
+    "order": 96
+  },
+  {
+    "id": "P02.a",
+    "parentId": "P02",
+    "kind": "subtask",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Configure production database access and separation",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Configure production database access and separation. Then attempt the smallest observable slice.",
+    "lesson": "Production credentials belong in host secret settings, not frontend bundles. This slice focuses on configure production database access and separation.",
+    "assessment": "How would you rotate a leaked database credential without editing source code? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Provision the chosen database with least-privilege access and an explicit network policy under the approved budget.",
+      "Separate production/test data and credentials, and verify connectivity without exposing secrets."
+    ],
+    "dependsOn": [
+      "P01",
+      "B11"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "P01",
+      "B11.a",
+      "B11.b"
+    ],
+    "order": 97
+  },
+  {
+    "id": "P02.b",
+    "parentId": "P02",
+    "kind": "subtask",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Configure and validate production secrets",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Configure and validate production secrets. Then attempt the smallest observable slice.",
+    "lesson": "Production credentials belong in host secret settings, not frontend bundles. This slice focuses on configure and validate production secrets.",
+    "assessment": "How would you rotate a leaked database credential without editing source code? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Set required secrets in the selected host's secret settings; keep secrets out of Git, frontend config and logs.",
+      "Verify config failure messages redact values, document rotation, and set only required public frontend variables."
+    ],
+    "dependsOn": [
+      "P01",
+      "B11",
+      "P02.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "P01",
+      "B11.a",
+      "B11.b",
+      "P02.a"
+    ],
+    "order": 98
+  },
+  {
+    "id": "P02.c",
+    "parentId": "P02",
+    "kind": "subtask",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Verify backup and restore expectations",
+    "estimate": 2,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Verify backup and restore expectations. Then attempt the smallest observable slice.",
+    "lesson": "Production credentials belong in host secret settings, not frontend bundles. This slice focuses on verify backup and restore expectations.",
+    "assessment": "How would you rotate a leaked database credential without editing source code? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Document backup policy, retention and the supported restore process for the selected database plan.",
+      "Demonstrate a safe restore/check using synthetic or isolated data, or document a concrete unverified limitation before launch."
+    ],
+    "dependsOn": [
+      "P01",
+      "B11",
+      "P02.b"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "P01",
+      "B11.a",
+      "B11.b",
+      "P02.b"
+    ],
+    "order": 99
   },
   {
     "id": "P03",
@@ -631,7 +3116,84 @@
     "dependsOn": [
       "P02",
       "B06"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "API rollout and deployed readiness/negative-path checks are separate deliveries.",
+    "kind": "parent",
+    "childIds": [
+      "P03.a",
+      "P03.b"
+    ],
+    "executionDependsOn": [
+      "P02.a",
+      "P02.b",
+      "P02.c",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 100
+  },
+  {
+    "id": "P03.a",
+    "parentId": "P03",
+    "kind": "subtask",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Deploy the reviewed API with production transport settings",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Deploy the reviewed API with production transport settings. Then attempt the smallest observable slice.",
+    "lesson": "A process can be alive while a required dependency is unavailable. This slice focuses on deploy the reviewed api with production transport settings.",
+    "assessment": "What signal tells you the API is ready to receive real requests? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Deploy a reviewed commit with production secrets, HTTPS and explicit proxy/CORS/rate-limit settings.",
+      "Verify startup/shutdown behavior and separate process health from dependency readiness as documented."
+    ],
+    "dependsOn": [
+      "P02",
+      "B06"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "P02.a",
+      "P02.b",
+      "P02.c",
+      "B06.a",
+      "B06.b"
+    ],
+    "order": 101
+  },
+  {
+    "id": "P03.b",
+    "parentId": "P03",
+    "kind": "subtask",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Verify deployed API readiness and failures",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Verify deployed API readiness and failures. Then attempt the smallest observable slice.",
+    "lesson": "A process can be alive while a required dependency is unavailable. This slice focuses on verify deployed api readiness and failures.",
+    "assessment": "What signal tells you the API is ready to receive real requests? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Use synthetic requests to verify database access, public endpoints, allowed/disallowed origins and appropriate error/rate-limit responses.",
+      "Check redacted logs, readiness and rollback behavior; do not mark readiness based only on a responding health endpoint."
+    ],
+    "dependsOn": [
+      "P02",
+      "B06",
+      "P03.a"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "P02.a",
+      "P02.b",
+      "P02.c",
+      "B06.a",
+      "B06.b",
+      "P03.a"
+    ],
+    "order": 102
   },
   {
     "id": "P04",
@@ -648,7 +3210,88 @@
     "dependsOn": [
       "P03",
       "Q03"
-    ]
+    ],
+    "estimate": 6,
+    "estimateRationale": "Frontend deployment/domain configuration and live integrated journeys have different verification.",
+    "kind": "parent",
+    "childIds": [
+      "P04.a",
+      "P04.b"
+    ],
+    "executionDependsOn": [
+      "P03.a",
+      "P03.b",
+      "Q03.a",
+      "Q03.b",
+      "Q03.c"
+    ],
+    "order": 103
+  },
+  {
+    "id": "P04.a",
+    "parentId": "P04",
+    "kind": "subtask",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Deploy the frontend and configure HTTPS/domain",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Deploy the frontend and configure HTTPS/domain. Then attempt the smallest observable slice.",
+    "lesson": "Public configuration is embedded or served to visitors; secrets must stay server-side. This slice focuses on deploy the frontend and configure https/domain.",
+    "assessment": "Why might changing an environment variable require a rebuild? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Build the reviewed frontend with the production public API URL and no server secrets.",
+      "Verify HTTPS, asset paths, direct routes, domains/redirects and correct public configuration."
+    ],
+    "dependsOn": [
+      "P03",
+      "Q03"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "P03.a",
+      "P03.b",
+      "Q03.a",
+      "Q03.b",
+      "Q03.c"
+    ],
+    "order": 104
+  },
+  {
+    "id": "P04.b",
+    "parentId": "P04",
+    "kind": "subtask",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Verify live frontend/API journeys",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Verify live frontend/API journeys. Then attempt the smallest observable slice.",
+    "lesson": "Public configuration is embedded or served to visitors; secrets must stay server-side. This slice focuses on verify live frontend/api journeys.",
+    "assessment": "Why might changing an environment variable require a rebuild? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Check navigation, real project reads, synthetic contact submission, error states, metadata, both themes and mobile views.",
+      "Exercise whole-row reorder with pointer, touch and keyboard against the agreed persistence policy; verify sibling reflow, drop/cancel and reduced motion."
+    ],
+    "dependsOn": [
+      "P03",
+      "Q03",
+      "P04.a",
+      "U07"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "P03.a",
+      "P03.b",
+      "Q03.a",
+      "Q03.b",
+      "Q03.c",
+      "P04.a",
+      "U07.a",
+      "U07.b",
+      "U07.c"
+    ],
+    "order": 105
   },
   {
     "id": "P05",
@@ -664,6 +3307,106 @@
     ],
     "dependsOn": [
       "P04"
-    ]
+    ],
+    "estimate": 8,
+    "estimateRationale": "Final functional/security review, operations readiness and handoff are separate approval evidence.",
+    "kind": "parent",
+    "childIds": [
+      "P05.a",
+      "P05.b",
+      "P05.c"
+    ],
+    "executionDependsOn": [
+      "P04.a",
+      "P04.b"
+    ],
+    "order": 106
+  },
+  {
+    "id": "P05.a",
+    "parentId": "P05",
+    "kind": "subtask",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Complete launch functional, accessibility and security checks",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Complete launch functional, accessibility and security checks. Then attempt the smallest observable slice.",
+    "lesson": "Launching includes repeatable operations, monitoring and recovery. This slice focuses on complete launch functional, accessibility and security checks.",
+    "assessment": "How would you confirm a rollback restored both the UI and API contracts? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Walk through live journeys using the final scope matrix, including whole-row reorder and applicable auth flows.",
+      "Record material accessibility/security/performance findings and resolve launch blockers with evidence."
+    ],
+    "dependsOn": [
+      "P04",
+      "Q04"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "P04.a",
+      "P04.b",
+      "Q04.a",
+      "Q04.b"
+    ],
+    "order": 107
+  },
+  {
+    "id": "P05.b",
+    "parentId": "P05",
+    "kind": "subtask",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Document monitoring, rollback and maintenance operations",
+    "estimate": 3,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Document monitoring, rollback and maintenance operations. Then attempt the smallest observable slice.",
+    "lesson": "Launching includes repeatable operations, monitoring and recovery. This slice focuses on document monitoring, rollback and maintenance operations.",
+    "assessment": "How would you confirm a rollback restored both the UI and API contracts? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Document actionable monitoring, backup expectations, restore/rollback steps and dependency/credential maintenance.",
+      "Verify a safe rollback/recovery exercise with the chosen hosts or explicitly record unverified operational limitations."
+    ],
+    "dependsOn": [
+      "P04",
+      "P05.a",
+      "P02.c"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "P04.a",
+      "P04.b",
+      "P05.a",
+      "P02.c"
+    ],
+    "order": 108
+  },
+  {
+    "id": "P05.c",
+    "parentId": "P05",
+    "kind": "subtask",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Request final review and publish the maintenance handoff",
+    "estimate": 2,
+    "estimateRationale": "A focused independently reviewable slice of the parent scope; reassess if uncertainty raises it above 4 points.",
+    "firstStep": "Spend 20–45 minutes writing one concrete acceptance example for: Request final review and publish the maintenance handoff. Then attempt the smallest observable slice.",
+    "lesson": "Launching includes repeatable operations, monitoring and recovery. This slice focuses on request final review and publish the maintenance handoff.",
+    "assessment": "How would you confirm a rollback restored both the UI and API contracts? Explain one success case and one failure/edge case for this slice, and the evidence that would prove each.",
+    "acceptance": [
+      "Link final acceptance evidence, known limitations, relevant check results and operations documentation.",
+      "Request review in the learning chat; mark completion only after required feedback is resolved."
+    ],
+    "dependsOn": [
+      "P04",
+      "P05.b"
+    ],
+    "childIds": [],
+    "executionDependsOn": [
+      "P04.a",
+      "P04.b",
+      "P05.b"
+    ],
+    "order": 109
   }
 ]

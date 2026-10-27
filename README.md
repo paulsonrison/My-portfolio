@@ -80,7 +80,9 @@ Choose one **To do** task, move it to **In progress**, implement a small slice, 
 
 Start with [the learning guide](docs/learning/README.md) and [review expectations](docs/reviews/README.md). The full task definitions are tracked in [docs/backlog.json](docs/backlog.json).
 
-Begin with [issue #1: Run both starter applications](https://github.com/paulsonrison/My-portfolio/issues/1). [docs/backlog-links.json](docs/backlog-links.json) maps all 40 local task IDs to their GitHub issues.
+Begin with [issue #1: Run both starter applications](https://github.com/paulsonrison/My-portfolio/issues/1). [docs/backlog-links.json](docs/backlog-links.json) maps local parent/task/sub-issue IDs to GitHub issues. Follow the board's Order field and choose a ready actionable issue of at most 4 story points. Larger parents must be implemented through their linked sub-issues.
+
+The [task sizing policy](docs/backlog-policy.md) explains estimates and readiness. The [scope review](docs/scope-coverage.md) records coverage, the whole-row reorder requirement and remaining Figma inventory limits.
 
 ## References
 

@@ -2,6 +2,24 @@ name: Learning task
 description: A small portfolio task with a clear completion check
 title: "[Task] "
 body:
+  - type: dropdown
+    id: size
+    attributes:
+      label: Story points
+      description: Relative effort, complexity and uncertainty; actionable work must be at most 4. Larger work needs linked sub-issues.
+      options:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "Parent — split into sub-issues"
+    validations:
+      required: true
+  - type: textarea
+    id: prerequisites
+    attributes:
+      label: Prerequisites and parent issue
+      description: Link dependencies and the parent issue if this is a sub-issue.
   - type: textarea
     id: outcome
     attributes:

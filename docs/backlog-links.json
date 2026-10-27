@@ -15,9 +15,34 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/3"
   },
   {
+    "taskId": "F03.a",
+    "number": 41,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/41"
+  },
+  {
+    "taskId": "F03.b",
+    "number": 42,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/42"
+  },
+  {
     "taskId": "F04",
     "number": 4,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/4"
+  },
+  {
+    "taskId": "F05",
+    "number": 43,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/43"
+  },
+  {
+    "taskId": "F05.a",
+    "number": 44,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/44"
+  },
+  {
+    "taskId": "F05.b",
+    "number": 45,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/45"
   },
   {
     "taskId": "D01",
@@ -35,6 +60,16 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/7"
   },
   {
+    "taskId": "D03.a",
+    "number": 46,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/46"
+  },
+  {
+    "taskId": "D03.b",
+    "number": 47,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/47"
+  },
+  {
     "taskId": "D04",
     "number": 8,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/8"
@@ -43,6 +78,16 @@
     "taskId": "D05",
     "number": 9,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/9"
+  },
+  {
+    "taskId": "D05.a",
+    "number": 48,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/48"
+  },
+  {
+    "taskId": "D05.b",
+    "number": 49,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/49"
   },
   {
     "taskId": "D06",
@@ -60,6 +105,16 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/12"
   },
   {
+    "taskId": "U01.a",
+    "number": 50,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/50"
+  },
+  {
+    "taskId": "U01.b",
+    "number": 51,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/51"
+  },
+  {
     "taskId": "U02",
     "number": 13,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/13"
@@ -75,9 +130,29 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/15"
   },
   {
+    "taskId": "U04.a",
+    "number": 52,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/52"
+  },
+  {
+    "taskId": "U04.b",
+    "number": 53,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/53"
+  },
+  {
     "taskId": "U05",
     "number": 16,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/16"
+  },
+  {
+    "taskId": "U05.a",
+    "number": 54,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/54"
+  },
+  {
+    "taskId": "U05.b",
+    "number": 55,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/55"
   },
   {
     "taskId": "U06",
@@ -85,9 +160,54 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/17"
   },
   {
+    "taskId": "U06.a",
+    "number": 56,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/56"
+  },
+  {
+    "taskId": "U06.b",
+    "number": 57,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/57"
+  },
+  {
+    "taskId": "U07",
+    "number": 58,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/58"
+  },
+  {
+    "taskId": "U07.a",
+    "number": 59,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/59"
+  },
+  {
+    "taskId": "U07.b",
+    "number": 60,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/60"
+  },
+  {
+    "taskId": "U07.c",
+    "number": 61,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/61"
+  },
+  {
+    "taskId": "B07",
+    "number": 24,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/24"
+  },
+  {
     "taskId": "B01",
     "number": 18,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/18"
+  },
+  {
+    "taskId": "B01.a",
+    "number": 62,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/62"
+  },
+  {
+    "taskId": "B01.b",
+    "number": 63,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/63"
   },
   {
     "taskId": "B02",
@@ -100,9 +220,29 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/20"
   },
   {
+    "taskId": "B03.a",
+    "number": 64,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/64"
+  },
+  {
+    "taskId": "B03.b",
+    "number": 65,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/65"
+  },
+  {
     "taskId": "B04",
     "number": 21,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/21"
+  },
+  {
+    "taskId": "B04.a",
+    "number": 66,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/66"
+  },
+  {
+    "taskId": "B04.b",
+    "number": 67,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/67"
   },
   {
     "taskId": "B05",
@@ -110,14 +250,29 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/22"
   },
   {
+    "taskId": "B05.a",
+    "number": 68,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/68"
+  },
+  {
     "taskId": "B06",
     "number": 23,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/23"
   },
   {
-    "taskId": "B07",
-    "number": 24,
-    "url": "https://github.com/paulsonrison/My-portfolio/issues/24"
+    "taskId": "B06.a",
+    "number": 69,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/69"
+  },
+  {
+    "taskId": "B06.b",
+    "number": 70,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/70"
+  },
+  {
+    "taskId": "B05.b",
+    "number": 71,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/71"
   },
   {
     "taskId": "B08",
@@ -125,9 +280,44 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/25"
   },
   {
+    "taskId": "B08.a",
+    "number": 72,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/72"
+  },
+  {
+    "taskId": "B08.b",
+    "number": 73,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/73"
+  },
+  {
+    "taskId": "B08.c",
+    "number": 74,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/74"
+  },
+  {
     "taskId": "B09",
     "number": 26,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/26"
+  },
+  {
+    "taskId": "B09.a",
+    "number": 75,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/75"
+  },
+  {
+    "taskId": "B09.b",
+    "number": 76,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/76"
+  },
+  {
+    "taskId": "B09.c",
+    "number": 77,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/77"
+  },
+  {
+    "taskId": "B09.d",
+    "number": 78,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/78"
   },
   {
     "taskId": "B10",
@@ -135,9 +325,29 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/27"
   },
   {
+    "taskId": "B10.a",
+    "number": 79,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/79"
+  },
+  {
+    "taskId": "B10.b",
+    "number": 80,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/80"
+  },
+  {
     "taskId": "B11",
     "number": 28,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/28"
+  },
+  {
+    "taskId": "B11.a",
+    "number": 81,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/81"
+  },
+  {
+    "taskId": "B11.b",
+    "number": 82,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/82"
   },
   {
     "taskId": "I01",
@@ -145,9 +355,29 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/29"
   },
   {
+    "taskId": "I01.a",
+    "number": 83,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/83"
+  },
+  {
+    "taskId": "I01.b",
+    "number": 84,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/84"
+  },
+  {
     "taskId": "I02",
     "number": 30,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/30"
+  },
+  {
+    "taskId": "I02.a",
+    "number": 85,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/85"
+  },
+  {
+    "taskId": "I02.b",
+    "number": 86,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/86"
   },
   {
     "taskId": "I03",
@@ -155,9 +385,34 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/31"
   },
   {
+    "taskId": "I03.a",
+    "number": 87,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/87"
+  },
+  {
+    "taskId": "I03.b",
+    "number": 88,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/88"
+  },
+  {
     "taskId": "Q01",
     "number": 32,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/32"
+  },
+  {
+    "taskId": "Q01.a",
+    "number": 89,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/89"
+  },
+  {
+    "taskId": "Q01.b",
+    "number": 90,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/90"
+  },
+  {
+    "taskId": "Q01.c",
+    "number": 91,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/91"
   },
   {
     "taskId": "Q02",
@@ -165,14 +420,54 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/33"
   },
   {
+    "taskId": "Q02.a",
+    "number": 92,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/92"
+  },
+  {
+    "taskId": "Q02.b",
+    "number": 93,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/93"
+  },
+  {
+    "taskId": "Q02.c",
+    "number": 94,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/94"
+  },
+  {
     "taskId": "Q03",
     "number": 34,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/34"
   },
   {
+    "taskId": "Q03.a",
+    "number": 95,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/95"
+  },
+  {
+    "taskId": "Q03.b",
+    "number": 96,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/96"
+  },
+  {
+    "taskId": "Q03.c",
+    "number": 97,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/97"
+  },
+  {
     "taskId": "Q04",
     "number": 35,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/35"
+  },
+  {
+    "taskId": "Q04.a",
+    "number": 98,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/98"
+  },
+  {
+    "taskId": "Q04.b",
+    "number": 99,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/99"
   },
   {
     "taskId": "P01",
@@ -185,9 +480,34 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/37"
   },
   {
+    "taskId": "P02.a",
+    "number": 100,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/100"
+  },
+  {
+    "taskId": "P02.b",
+    "number": 101,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/101"
+  },
+  {
+    "taskId": "P02.c",
+    "number": 102,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/102"
+  },
+  {
     "taskId": "P03",
     "number": 38,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/38"
+  },
+  {
+    "taskId": "P03.a",
+    "number": 103,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/103"
+  },
+  {
+    "taskId": "P03.b",
+    "number": 104,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/104"
   },
   {
     "taskId": "P04",
@@ -195,8 +515,33 @@
     "url": "https://github.com/paulsonrison/My-portfolio/issues/39"
   },
   {
+    "taskId": "P04.a",
+    "number": 105,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/105"
+  },
+  {
+    "taskId": "P04.b",
+    "number": 106,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/106"
+  },
+  {
     "taskId": "P05",
     "number": 40,
     "url": "https://github.com/paulsonrison/My-portfolio/issues/40"
+  },
+  {
+    "taskId": "P05.a",
+    "number": 107,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/107"
+  },
+  {
+    "taskId": "P05.b",
+    "number": 108,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/108"
+  },
+  {
+    "taskId": "P05.c",
+    "number": 109,
+    "url": "https://github.com/paulsonrison/My-portfolio/issues/109"
   }
 ]

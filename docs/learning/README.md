@@ -40,3 +40,7 @@ Use this template: "I'm on issue #__. I expected __. Instead __ happened. I trie
 ## Daily finish
 
 Commit your working slice, write the next tiny step in the issue, and update its Status. Keep only one task In progress if switching work makes it harder to finish.
+
+## Picking a task after the scope audit
+
+Follow the board's Order field, then choose the first ready actionable issue. Every actionable issue is estimated at 1–4 story points. Larger issues are parent containers with linked sub-issues: choose a child, not the whole parent. Points are relative effort/complexity/uncertainty, not hours or Big-O. Read [the sizing policy](../backlog-policy.md) and use the issue's lesson/assessment to guide one focused session.
