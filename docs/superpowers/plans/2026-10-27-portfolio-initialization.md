@@ -49,10 +49,10 @@ Interfaces: backlog records contain title, phase, area, first step, lesson, asse
 Remote targets: paulsonrison/My-port-folio and a linked GitHub Project named My port folio.
 
 - [x] Create public repository without overwriting an existing repository.
-- [ ] Initialize local Git, review tracked files for secrets, commit and push.
+- [x] Initialize local Git, review tracked files for secrets, commit and push.
 - [x] Create/link Project, configure four Status options and board columns.
-- [ ] Create ordered issues from backlog, add to Project with To do status.
-- [ ] Verify repository visibility, remote commit, issue count, project linkage/status options and final local cleanliness.
+- [x] Create ordered issues from backlog, add to Project with To do status.
+- [x] Verify repository visibility, remote commit, issue count, project linkage/status options and final local cleanliness.
 
 ## Execution
 The user approved the initialization design and requested execution. Proceed inline using the existing workspace; it contains only the planning document and no existing Git history or conflicting work.

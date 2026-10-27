@@ -25,4 +25,8 @@ Runtime used: Node.js 24.22.1, npm 11.16.0. Frontend: Next.js 16.4.3, React 19.3
 - The requested ADHD plugin was not found in plugin search. The backlog uses short first steps, explicit prerequisites, lessons and assessments directly.
 - Claude Octopus's installed guide was checked with UTF-8 enabled. No external model-provider workflow was started for this initialization.
 
-No production security or deployment readiness claim is made. CI verification is separate from local verification and should be checked on GitHub after the initial push.
+No production security or deployment readiness claim is made.
+
+## GitHub verification
+
+The initial commit `546c5eb` passed the [Workspace checks run](https://github.com/paulsonrison/My-port-folio/actions/runs/40476169763) on GitHub's Ubuntu runner. Both `npm ci` and `npm run check` completed successfully. All 40 learning issues are created with milestones, prerequisites, lessons, assessments and acceptance checks. The linked Project uses a board view with Status columns To do, In progress, In review and Done.
