@@ -3,7 +3,7 @@
 A learning workspace for building an engineering portfolio yourself.
 Only the starter applications and development setup are implemented.
 
-[Public repository](https://github.com/paulsonrison/My-port-folio) · [Project board](https://github.com/users/paulsonrison/projects/3) · [Learning issues](https://github.com/paulsonrison/My-port-folio/issues)
+[Public repository](https://github.com/paulsonrison/My-portfolio) · [Project board](https://github.com/users/paulsonrison/projects/3) · [Learning issues](https://github.com/paulsonrison/My-portfolio/issues)
 
 ## Start here
 
@@ -80,7 +80,7 @@ Choose one **To do** task, move it to **In progress**, implement a small slice, 
 
 Start with [the learning guide](docs/learning/README.md) and [review expectations](docs/reviews/README.md). The full task definitions are tracked in [docs/backlog.json](docs/backlog.json).
 
-Begin with [issue #1: Run both starter applications](https://github.com/paulsonrison/My-port-folio/issues/1). [docs/backlog-links.json](docs/backlog-links.json) maps all 40 local task IDs to their GitHub issues.
+Begin with [issue #1: Run both starter applications](https://github.com/paulsonrison/My-portfolio/issues/1). [docs/backlog-links.json](docs/backlog-links.json) maps all 40 local task IDs to their GitHub issues.
 
 ## References
 

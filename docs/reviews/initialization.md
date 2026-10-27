@@ -29,4 +29,4 @@ No production security or deployment readiness claim is made.
 
 ## GitHub verification
 
-The initial commit `546c5eb` passed the [Workspace checks run](https://github.com/paulsonrison/My-port-folio/actions/runs/40476169763) on GitHub's Ubuntu runner. Both `npm ci` and `npm run check` completed successfully. All 40 learning issues are created with milestones, prerequisites, lessons, assessments and acceptance checks. The linked Project uses a board view with Status columns To do, In progress, In review and Done.
+The initial commit `546c5eb` passed the [Workspace checks run](https://github.com/paulsonrison/My-portfolio/actions/runs/40476169763) on GitHub's Ubuntu runner. Both `npm ci` and `npm run check` completed successfully. All 40 learning issues are created with milestones, prerequisites, lessons, assessments and acceptance checks. The linked Project uses a board view with Status columns To do, In progress, In review and Done.
