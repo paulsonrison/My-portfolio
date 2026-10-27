@@ -1,0 +1,669 @@
+[
+  {
+    "id": "F01",
+    "phase": "Foundations",
+    "area": "learning",
+    "title": "Run both starter applications",
+    "firstStep": "Start the frontend and API; visit / and /health.",
+    "lesson": "A browser page and an API response are different HTTP representations.",
+    "assessment": "Which app returns HTML, which returns JSON, and why is there one lockfile?",
+    "acceptance": [
+      "A fresh npm ci succeeds.",
+      "Both apps run and you record their addresses and one Network-panel observation."
+    ],
+    "dependsOn": []
+  },
+  {
+    "id": "F02",
+    "phase": "Foundations",
+    "area": "design",
+    "title": "Inventory the Figma reference",
+    "firstStep": "List the visible sections, screens and interactive states in your Figma Make file.",
+    "lesson": "A design inventory turns a visual reference into explicit implementation scope.",
+    "assessment": "Which parts are presentation, interaction, or data-backed features?",
+    "acceptance": [
+      "Record actual sections, assets, routes, desktop/mobile behavior and states.",
+      "Flag uncertain features instead of assuming the scaffold includes them."
+    ],
+    "dependsOn": [
+      "F01"
+    ]
+  },
+  {
+    "id": "F03",
+    "phase": "Foundations",
+    "area": "planning",
+    "title": "Define portfolio content and API contracts",
+    "firstStep": "Write sample project data and decide what needs persistence.",
+    "lesson": "A contract defines request, response and error shapes before either side depends on them.",
+    "assessment": "Which content can stay static, and what justifies a database or admin login?",
+    "acceptance": [
+      "Document public content, editable content, contact requirements and non-goals.",
+      "Define draft endpoint shapes and decide whether admin auth is required."
+    ],
+    "dependsOn": [
+      "F02"
+    ]
+  },
+  {
+    "id": "F04",
+    "phase": "Foundations",
+    "area": "learning",
+    "title": "Practice branches, commits and pull requests",
+    "firstStep": "Create a branch and submit a small README improvement.",
+    "lesson": "A small PR preserves one clear reason for a change.",
+    "assessment": "How do a branch, commit, issue and pull request relate?",
+    "acceptance": [
+      "Link the issue in a focused PR.",
+      "Run checks and explain the change without submitting unrelated files."
+    ],
+    "dependsOn": [
+      "F01"
+    ]
+  },
+  {
+    "id": "D01",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Choose and load portfolio fonts",
+    "firstStep": "Identify font families in the reference and check their licenses.",
+    "lesson": "Typography needs readable sizes, fallbacks and predictable loading.",
+    "assessment": "What happens when a font fails to load, and what causes layout shift?",
+    "acceptance": [
+      "Document font sources, permitted use and fallbacks.",
+      "Use Next.js font loading or local fonts; verify readable text and no avoidable layout shift."
+    ],
+    "dependsOn": [
+      "F02"
+    ]
+  },
+  {
+    "id": "D02",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Define colors, spacing and type tokens",
+    "firstStep": "List repeated colors, spacing and text sizes from the reference.",
+    "lesson": "Tokens give repeated design choices one consistent name.",
+    "assessment": "When is a token useful compared with a one-off style?",
+    "acceptance": [
+      "Create documented CSS/Tailwind tokens for color, type, spacing, radius and focus.",
+      "Check text/background contrast and use tokens in one small sample."
+    ],
+    "dependsOn": [
+      "D01"
+    ]
+  },
+  {
+    "id": "D03",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Build light and dark theme behavior",
+    "firstStep": "Describe initial theme, system preference and manual toggle behavior.",
+    "lesson": "Theme state affects rendering, persistence and accessible contrast.",
+    "assessment": "How can a saved browser preference cause a hydration mismatch?",
+    "acceptance": [
+      "Implement and persist an accessible theme switch with a system fallback.",
+      "Verify contrast, keyboard operation, initial load and no hydration warnings."
+    ],
+    "dependsOn": [
+      "D02"
+    ]
+  },
+  {
+    "id": "D04",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Set global custom styles and responsive rules",
+    "firstStep": "Write base heading, paragraph, link and focus styles.",
+    "lesson": "Responsive design adapts content rather than assuming one device size.",
+    "assessment": "Why can a fixed-width container fail on a small screen?",
+    "acceptance": [
+      "Define consistent base styles and responsive content widths.",
+      "Check narrow mobile, tablet and desktop widths with no horizontal overflow."
+    ],
+    "dependsOn": [
+      "D02"
+    ]
+  },
+  {
+    "id": "D05",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Create the shared Button component",
+    "firstStep": "Specify primary, secondary, disabled and focus states.",
+    "lesson": "A reusable button should preserve native semantics and expose only necessary options.",
+    "assessment": "When should navigation use a link instead of a button?",
+    "acceptance": [
+      "Build Button with accessible states and minimal props.",
+      "Add the first real exports/React peer dependencies to packages/ui and demonstrate consumption."
+    ],
+    "dependsOn": [
+      "D03",
+      "D04"
+    ]
+  },
+  {
+    "id": "D06",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Create inputs and form feedback",
+    "firstStep": "Build one labeled input with hint and error text.",
+    "lesson": "Labels and error associations make forms usable beyond visual layout.",
+    "assessment": "Why is a placeholder not a label?",
+    "acceptance": [
+      "Support label, hint, error, disabled and required states.",
+      "Verify keyboard use and programmatically associated error text."
+    ],
+    "dependsOn": [
+      "D04"
+    ]
+  },
+  {
+    "id": "D07",
+    "phase": "Design system",
+    "area": "frontend",
+    "title": "Create ProgressBar and indicator states",
+    "firstStep": "Decide whether the reference represents measurable progress or decoration.",
+    "lesson": "A progress indicator needs a meaningful accessible value or an explicit indeterminate state.",
+    "assessment": "What should assistive technology announce when progress is unknown?",
+    "acceptance": [
+      "Create ProgressBar only for a meaningful use found in the reference.",
+      "Verify bounds/accessible values or document why a decorative indicator replaces it."
+    ],
+    "dependsOn": [
+      "D05",
+      "F02"
+    ]
+  },
+  {
+    "id": "U01",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Build the responsive page shell",
+    "firstStep": "Create semantic header, navigation, main and footer regions.",
+    "lesson": "Landmarks and skip links make the page easier to navigate.",
+    "assessment": "Which landmark should contain the primary page content?",
+    "acceptance": [
+      "Implement desktop/mobile navigation and a skip link.",
+      "Verify keyboard focus, mobile menu behavior and no content obstruction."
+    ],
+    "dependsOn": [
+      "D05"
+    ]
+  },
+  {
+    "id": "U02",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Build the introduction and about sections",
+    "firstStep": "Write your real introductory text and section hierarchy.",
+    "lesson": "Semantic structure conveys meaning before styling is applied.",
+    "assessment": "How do heading levels help someone scan a page without seeing its layout?",
+    "acceptance": [
+      "Implement only sections confirmed by the inventory with real approved content.",
+      "Check headings, readable text, mobile layout and links."
+    ],
+    "dependsOn": [
+      "U01",
+      "F03"
+    ]
+  },
+  {
+    "id": "U03",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Build skills and journey sections",
+    "firstStep": "Map the reference's skills or timeline content into data.",
+    "lesson": "Repeated UI should be driven by stable data and meaningful keys.",
+    "assessment": "Why can array-index keys be unstable when a list changes?",
+    "acceptance": [
+      "Build the confirmed skills/journey content without invented claims.",
+      "Verify ordered reading, narrow layouts and meaningful indicators."
+    ],
+    "dependsOn": [
+      "U02",
+      "D07"
+    ]
+  },
+  {
+    "id": "U04",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Build project cards and project details",
+    "firstStep": "Create one sample project card and its detail route.",
+    "lesson": "Routes identify content; components share presentation.",
+    "assessment": "What should happen when a project slug is unknown?",
+    "acceptance": [
+      "Render projects from a clear data shape with stable routes and accessible links.",
+      "Add a useful not-found state and responsive images/details."
+    ],
+    "dependsOn": [
+      "U01",
+      "F03"
+    ]
+  },
+  {
+    "id": "U05",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Build the contact form interface",
+    "firstStep": "Define fields and submit/success/failure states before wiring an API.",
+    "lesson": "Client validation improves feedback but cannot protect the server.",
+    "assessment": "Which validations must also run on the backend?",
+    "acceptance": [
+      "Use labeled inputs, validation feedback and pending/success/error states.",
+      "Prevent accidental duplicate submits and preserve input after recoverable failures."
+    ],
+    "dependsOn": [
+      "D06",
+      "U01",
+      "F03"
+    ]
+  },
+  {
+    "id": "U06",
+    "phase": "Frontend",
+    "area": "frontend",
+    "title": "Polish motion and reduced-motion behavior",
+    "firstStep": "Inventory the reference's interactions and choose one small animation.",
+    "lesson": "Motion should explain state without blocking access to content.",
+    "assessment": "How would you respect a user's reduced-motion setting?",
+    "acceptance": [
+      "Implement only purposeful transitions confirmed by the reference.",
+      "Verify reduced-motion preferences, focus and performance on mobile."
+    ],
+    "dependsOn": [
+      "U02",
+      "U03",
+      "U04"
+    ]
+  },
+  {
+    "id": "B01",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Validate environment configuration and database startup",
+    "firstStep": "List required settings and separate local defaults from production requirements.",
+    "lesson": "Failing clearly at startup is safer than discovering missing settings during a request.",
+    "assessment": "When should /health differ from a database-readiness check?",
+    "acceptance": [
+      "Create validated config with useful errors and no secret values in logs.",
+      "Connect Mongoose with explicit startup/failure/shutdown behavior and update env examples."
+    ],
+    "dependsOn": [
+      "F03"
+    ]
+  },
+  {
+    "id": "B02",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Design project schemas and indexes",
+    "firstStep": "Write the smallest persisted project schema from the API contract.",
+    "lesson": "Schemas validate structure; indexes support queries and constraints.",
+    "assessment": "Why does application validation alone not guarantee uniqueness?",
+    "acceptance": [
+      "Define project fields, allowed values, timestamps and needed indexes.",
+      "Verify invalid data and duplicate constraints against a test database."
+    ],
+    "dependsOn": [
+      "B01"
+    ]
+  },
+  {
+    "id": "B03",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Implement validation and safe API errors",
+    "firstStep": "Define success and invalid-input responses for one endpoint.",
+    "lesson": "Controllers map HTTP, services handle use cases, and validators constrain input.",
+    "assessment": "Why should the API avoid returning raw database errors?",
+    "acceptance": [
+      "Add strict request validation, identifier checks and centralized safe errors.",
+      "Prove malformed JSON, invalid fields, unknown routes and unexpected errors return safe responses."
+    ],
+    "dependsOn": [
+      "B01",
+      "F03"
+    ]
+  },
+  {
+    "id": "B04",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Implement public project read endpoints",
+    "firstStep": "Implement the contracted project-list response first.",
+    "lesson": "Public reads still need bounded queries and safe response shapes.",
+    "assessment": "What happens if a caller requests an extremely large page size?",
+    "acceptance": [
+      "Provide bounded list and slug/detail reads with only public fields.",
+      "Test success, missing records, invalid query values and stable response contracts."
+    ],
+    "dependsOn": [
+      "B02",
+      "B03"
+    ]
+  },
+  {
+    "id": "B05",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Implement the contact-submission endpoint",
+    "firstStep": "Validate one synthetic contact submission without sending real email.",
+    "lesson": "Untrusted input must be constrained before persistence or delivery.",
+    "assessment": "How could an otherwise valid contact endpoint be abused?",
+    "acceptance": [
+      "Implement strict field/size validation and the agreed storage/delivery policy.",
+      "Verify invalid input, safe responses, duplicate/abuse handling and no private message text in logs."
+    ],
+    "dependsOn": [
+      "B03",
+      "F03"
+    ]
+  },
+  {
+    "id": "B06",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Apply HTTP security and CORS policy",
+    "firstStep": "List the exact frontend origins allowed in local and deployed environments.",
+    "lesson": "CORS controls browser reads; it is not authentication or authorization.",
+    "assessment": "Can a command-line client call an API even when CORS denies its origin?",
+    "acceptance": [
+      "Configure Helmet, explicit CORS origins, body limits and baseline rate limiting.",
+      "Test allowed/disallowed origins, large bodies and rate-limit behavior; document proxy assumptions."
+    ],
+    "dependsOn": [
+      "B03"
+    ]
+  },
+  {
+    "id": "B07",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Decide the admin authentication and authorization model",
+    "firstStep": "Decide whether portfolio updates actually need an admin UI.",
+    "lesson": "Authentication identifies someone; authorization decides permitted actions.",
+    "assessment": "Why should a public portfolio not require public account registration by default?",
+    "acceptance": [
+      "Record admin scope, account provisioning, credential/session transport and ownership policy.",
+      "If no admin auth is needed, document N/A and close conditional auth tasks deliberately."
+    ],
+    "dependsOn": [
+      "F03"
+    ]
+  },
+  {
+    "id": "B08",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Implement conditional admin login with bcrypt and JWT",
+    "firstStep": "If auth is required, first test wrong-password behavior with synthetic accounts.",
+    "lesson": "bcrypt hashes passwords; JWT signatures protect claims but do not hide them.",
+    "assessment": "What belongs in a JWT, and what checks are needed beyond decoding it?",
+    "acceptance": [
+      "If required, use bcrypt, minimal safe claims, expiry and explicit JWT algorithm/issuer/audience policy.",
+      "Test valid/wrong credentials, expired/tampered tokens and protected-resource authorization."
+    ],
+    "dependsOn": [
+      "B07",
+      "B03",
+      "B06"
+    ]
+  },
+  {
+    "id": "B09",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Implement conditional session invalidation and account recovery",
+    "firstStep": "Write reset/change/logout behavior before choosing token storage.",
+    "lesson": "A password reset is incomplete if unwanted sessions remain usable.",
+    "assessment": "How do expiry, revocation and a one-use recovery token differ?",
+    "acceptance": [
+      "If required, define revocation and secure reset/change behavior; add email verification only if needed.",
+      "Verify expiry, single use, token hashing, enumeration protection and account/IP abuse limits."
+    ],
+    "dependsOn": [
+      "B08"
+    ]
+  },
+  {
+    "id": "B10",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Protect conditional project content mutations",
+    "firstStep": "Start with a test showing an unauthorized edit is rejected.",
+    "lesson": "Every write needs a field allow-list and permission decision.",
+    "assessment": "Why is passing request.body directly to a database update risky?",
+    "acceptance": [
+      "If admin editing is required, implement validated authorized create/update/delete operations.",
+      "Test missing credentials, insufficient permissions, invalid identifiers and forbidden fields."
+    ],
+    "dependsOn": [
+      "B04",
+      "B08"
+    ]
+  },
+  {
+    "id": "B11",
+    "phase": "Backend",
+    "area": "backend",
+    "title": "Add redacted logging and graceful shutdown",
+    "firstStep": "List useful operational events and sensitive fields that must be excluded.",
+    "lesson": "Logs should explain failures without becoming a second store of secrets.",
+    "assessment": "What must never be logged from an authentication or contact request?",
+    "acceptance": [
+      "Use structured redacted logs and safe security events where applicable.",
+      "Demonstrate clean shutdown of HTTP/database resources and safe unexpected-error handling."
+    ],
+    "dependsOn": [
+      "B01",
+      "B06"
+    ]
+  },
+  {
+    "id": "I01",
+    "phase": "Integration",
+    "area": "fullstack",
+    "title": "Connect project UI to the Express API",
+    "firstStep": "Fetch the project-list contract and show a loading state.",
+    "lesson": "Network requests can fail independently of the page rendering.",
+    "assessment": "How will the UI distinguish an empty result from a failed request?",
+    "acceptance": [
+      "Configure a single API base URL and connect project list/detail views.",
+      "Verify loading, empty, error, success and unknown-project behavior without leaking server secrets."
+    ],
+    "dependsOn": [
+      "U04",
+      "B04",
+      "B06"
+    ]
+  },
+  {
+    "id": "I02",
+    "phase": "Integration",
+    "area": "fullstack",
+    "title": "Connect the contact form end to end",
+    "firstStep": "Submit one synthetic message locally and inspect the HTTP response.",
+    "lesson": "A good integration maps server validation errors into actionable UI feedback.",
+    "assessment": "Why should a failed request not erase a person's message?",
+    "acceptance": [
+      "Connect the form to the agreed endpoint and map validation/rate-limit/network failures.",
+      "Prove success, failure, repeated clicks and preserved input with synthetic data."
+    ],
+    "dependsOn": [
+      "U05",
+      "B05",
+      "B06"
+    ]
+  },
+  {
+    "id": "I03",
+    "phase": "Integration",
+    "area": "fullstack",
+    "title": "Build conditional admin editing UI",
+    "firstStep": "Only if required, sketch the smallest authorized editing flow.",
+    "lesson": "Client route guards improve navigation but do not secure API writes.",
+    "assessment": "Can hiding an Edit button prevent an unauthorized API call?",
+    "acceptance": [
+      "If required, connect authenticated content editing to protected backend routes.",
+      "Verify unauthorized access, session expiry, validation and server-enforced permissions."
+    ],
+    "dependsOn": [
+      "B10",
+      "I01"
+    ]
+  },
+  {
+    "id": "Q01",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Audit accessibility and responsive behavior",
+    "firstStep": "Navigate the site using only a keyboard at a narrow viewport.",
+    "lesson": "Automated tools catch some accessibility issues; real interaction checks remain essential.",
+    "assessment": "What makes a visible focus indicator usable on both themes?",
+    "acceptance": [
+      "Check landmarks, headings, forms, contrast, image text, focus and reduced motion.",
+      "Record and fix issues found at mobile/tablet/desktop widths and with a screen-reader spot check."
+    ],
+    "dependsOn": [
+      "I01",
+      "I02",
+      "U06"
+    ]
+  },
+  {
+    "id": "Q02",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Add meaningful frontend and API regression tests",
+    "firstStep": "Choose one user-visible failure mode and write a failing test.",
+    "lesson": "Tests are most valuable when they prove an observable contract or interaction.",
+    "assessment": "What bug would your test catch that a snapshot alone would miss?",
+    "acceptance": [
+      "Add UI interaction tests and API happy/negative-path integration tests using isolated synthetic data.",
+      "Cover auth/security cases only where implemented and keep CI deterministic."
+    ],
+    "dependsOn": [
+      "I01",
+      "I02"
+    ]
+  },
+  {
+    "id": "Q03",
+    "phase": "Quality",
+    "area": "frontend",
+    "title": "Improve SEO, metadata and asset performance",
+    "firstStep": "Measure one page before optimizing its largest image.",
+    "lesson": "Performance work should use measurements; metadata helps previews and discovery.",
+    "assessment": "What is the difference between a social preview image and an image alt description?",
+    "acceptance": [
+      "Add real metadata, social previews, favicon, robots and sitemap appropriate to launch.",
+      "Optimize images/fonts, check layout shift and record before/after performance evidence."
+    ],
+    "dependsOn": [
+      "Q01",
+      "U04"
+    ]
+  },
+  {
+    "id": "Q04",
+    "phase": "Quality",
+    "area": "quality",
+    "title": "Review dependency health and CI coverage",
+    "firstStep": "Run the complete workspace checks and inspect their actual coverage.",
+    "lesson": "A green build does not prove every user flow is correct.",
+    "assessment": "What does the starter backend lint command check, and what does it omit?",
+    "acceptance": [
+      "Confirm install/lint/tests/build work from a clean checkout and expand lint/test coverage as code grows.",
+      "Review dependency advisories, ignored secrets and CI results; fix material findings."
+    ],
+    "dependsOn": [
+      "Q02",
+      "Q03"
+    ]
+  },
+  {
+    "id": "P01",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Choose frontend/API/database hosting and document costs",
+    "firstStep": "Compare one suitable host per app and record the smallest needed resources.",
+    "lesson": "Hosting choices affect runtime, networking, secrets and ongoing costs.",
+    "assessment": "Which data must survive a process restart, and where should it live?",
+    "acceptance": [
+      "Choose frontend, Node API and MongoDB hosting based on actual requirements and an approved budget.",
+      "Document domains, regions, CORS origins, environment variables and rollback approach before spending."
+    ],
+    "dependsOn": [
+      "Q04"
+    ]
+  },
+  {
+    "id": "P02",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Provision production database and secrets safely",
+    "firstStep": "List production secrets without putting values in Git.",
+    "lesson": "Production credentials belong in host secret settings, not frontend bundles.",
+    "assessment": "How would you rotate a leaked database credential without editing source code?",
+    "acceptance": [
+      "Configure least-privilege database access, network policy and backup/restore expectations.",
+      "Validate required settings without printing values; keep development/test data separate."
+    ],
+    "dependsOn": [
+      "P01",
+      "B11"
+    ]
+  },
+  {
+    "id": "P03",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Deploy and verify the API",
+    "firstStep": "Deploy a reviewed commit and inspect startup and health behavior.",
+    "lesson": "A process can be alive while a required dependency is unavailable.",
+    "assessment": "What signal tells you the API is ready to receive real requests?",
+    "acceptance": [
+      "Deploy the API with safe production config, HTTPS, proxy/rate-limit settings and readiness checks.",
+      "Verify database access, allowed origins, failures and logs with synthetic requests."
+    ],
+    "dependsOn": [
+      "P02",
+      "B06"
+    ]
+  },
+  {
+    "id": "P04",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Deploy the frontend and configure its domain",
+    "firstStep": "Build with the production public API URL and verify one API request.",
+    "lesson": "Public configuration is embedded or served to visitors; secrets must stay server-side.",
+    "assessment": "Why might changing an environment variable require a rebuild?",
+    "acceptance": [
+      "Deploy the frontend with correct API configuration and HTTPS/domain settings.",
+      "Check navigation, assets, forms, metadata, mobile views and both themes against the live API."
+    ],
+    "dependsOn": [
+      "P03",
+      "Q03"
+    ]
+  },
+  {
+    "id": "P05",
+    "phase": "Deployment",
+    "area": "deployment",
+    "title": "Run launch review and document maintenance",
+    "firstStep": "Walk through the deployed site as a first-time visitor.",
+    "lesson": "Launching includes repeatable operations, monitoring and recovery.",
+    "assessment": "How would you confirm a rollback restored both the UI and API contracts?",
+    "acceptance": [
+      "Record final accessibility/security/performance checks, functional smoke tests and rollback verification.",
+      "Document maintenance, dependency updates, monitoring, backups and known limitations; request final review."
+    ],
+    "dependsOn": [
+      "P04"
+    ]
+  }
+]

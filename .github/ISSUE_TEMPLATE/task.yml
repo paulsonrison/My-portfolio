@@ -1,0 +1,26 @@
+name: Learning task
+description: A small portfolio task with a clear completion check
+title: "[Task] "
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: What will someone be able to see or do?
+    validations:
+      required: true
+  - type: textarea
+    id: first-step
+    attributes:
+      label: First 20–45 minute step
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      value: "- [ ] Observable completion check"
+    validations:
+      required: true
+  - type: textarea
+    id: learning
+    attributes:
+      label: Lesson, assessment, and review evidence

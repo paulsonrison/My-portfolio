@@ -1,0 +1,28 @@
+{
+  "name": "my-port-folio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A self-built engineering portfolio learning workspace",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=24 <25",
+    "npm": ">=11 <12"
+  },
+  "scripts": {
+    "dev:frontend": "npm run dev --workspace=@portfolio/frontend",
+    "dev:backend": "npm run dev --workspace=@portfolio/backend",
+    "build": "npm run build --workspace=@portfolio/frontend",
+    "start:frontend": "npm run start --workspace=@portfolio/frontend",
+    "start:backend": "npm run start --workspace=@portfolio/backend",
+    "lint": "npm run lint --workspace=@portfolio/frontend && npm run lint --workspace=@portfolio/backend",
+    "test": "npm run test --workspace=@portfolio/backend",
+    "check": "npm run lint && npm test && npm run build"
+  },
+  "allowScripts": {
+    "bcrypt@6.0.0": true,
+    "unrs-resolver@1.12.2": true
+  }
+}
